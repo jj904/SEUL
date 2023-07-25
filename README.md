@@ -1,4 +1,4 @@
-# SUEL
+# SEUL
 
 Setup firebase 
 ```
