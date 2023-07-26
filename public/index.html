@@ -32,9 +32,6 @@
         <li class="nav-item">
           <a class="nav-link" href="upload.html">Create</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="history.html">History</a>
-        </li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -100,10 +97,9 @@
 
         var 템플릿 = `<div class="box">
           <div class="profile">
-            <img class="profile-img" src="profile.jpg" alt="Profile">
+            <img class="profile-img" src="./image/seul_logo.png" alt="Profile">
             <link rel="stylesheet" type="text/css" href="style.css">
             <h5 class="title">${doc.data().제목}</h5>
-            <h5 class="content">${doc.data().content}</h5>
           </div>
           <div class="frame">
             <img class="frame-img" src="${doc.data().이미지}" alt="Join">
@@ -111,8 +107,9 @@
             <img class="frame-img" src="${imageTemplate}" alt="Join">
             <img class="frame-img" src="${imageTemplate}" alt="Join">
             <h4 class="seul">Seul.</h4>
-          </div> <br>
-          `;
+          </div> 
+          <p class="content">#${doc.data().내용}</p>
+          </div> <br>`;
           
         $('.container').append(템플릿)
       }) 

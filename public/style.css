@@ -1,27 +1,4 @@
-.feed {
-    display: flex;
-    padding: 10px;
-  }
-  .thumbnail {
-    max-width: 200px;
-    width: 100%;
-    border-radius: 10px;
-    background-size: cover;
-    background-position: center;
-  }
-  .product .price {
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .product .title {
-    font-size: 17px;
-    font-weight: 600;
-  }
-  .product .date {
-    color: grey;
-    font-size: 13px;
-  }
-
+/* 하나의 프레임이 있는 box 입니다! */
 
   .box {
     width: 300px;
@@ -32,8 +9,19 @@
 }
 
 
-/* seul. 피드 */
+/* 해쉬태그 관련입니다! */
+.feed .content {
+  font-size: 16px;
+  font-weight: 600;
+}
 
+/* 나중에 유저 id들어갈 곳입니다! */
+.feed .title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 프로필 입니다 */
 .profile {
     display: flex;
     align-items: center;
@@ -51,6 +39,7 @@
     font-size: 20px;
 }
 
+/* 네컷 사진 아래 들어가는 seul. 로고 입니다 */
 .seul {
     color: white;
     display: flex;
@@ -59,7 +48,7 @@
     font-size: 15px;
 }
 
-
+/* 노랑 배경이 있고 네 컷을 다 담는 frame 입니다 */
 .frame {
     width: 200px;
     padding: 10px;
@@ -74,13 +63,12 @@
     flex-wrap: wrap;
 }
 
+/* 프레임 내부 각각의 이미지 관련 css입니다 */
 .frame-img {
-    background-color: white;
-    width: 100%;
-    height: auto;
-
-    max-width: 200px;
-    border-radius: 10px;
-    background-size: cover;
-    background-position: center;
+  background-color: white;
+  width: 180px;
+  height: 120px;
+  max-width: 200px;
+  background-size: cover;
+  background-position: center;
 }

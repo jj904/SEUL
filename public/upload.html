@@ -31,9 +31,6 @@
           <li class="nav-item">
             <a class="nav-link" href="upload.html">Create</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="history.html">History</a>
-          </li>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -111,7 +108,8 @@
             // Firestore에 저장할 데이터
             var 저장할거 = { 
                 제목 : $('#title').val(),
-                이미지 : url
+                이미지 : url,
+                내용 : $('#content').val(),
             };
         
             try {
