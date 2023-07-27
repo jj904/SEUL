@@ -32,6 +32,9 @@
         <li class="nav-item">
           <a class="nav-link" href="upload.html">Create</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tutorial.html">Tutorial</a>
+        </li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -105,13 +108,11 @@
           imageTemplates[i+1] = `<img class="frame-img" src="${joinImageUrl[i]}" alt="Join Image">`;
         } else {
           // No image for this slot, show an empty slot image
-          imageTemplates[i+1] = `<img class="frame-img" src="empty-slot.png">`;
-          // 사용자가 이미지를 추가할 수 있도록 링크를 제공
+          // 사용자가 이미지를 추가할 수 있도록 링크를 제공 / 빈 페이지를 클릭하면 Join 가능
           // 프레임이 다 차있으면 링크 없음
-          imageTemplates.push(`<a href="join.html?postId=${docId}"><div class="join">Join</div></a>`);
+          imageTemplates[i+1] = `<a href="join.html?postId=${docId}"><img class="frame-img" src="empty-slot.png"></a>`;
         }
       }    
-
       // 나머지 템플릿 생성
       var 템플릿 = `<div class="box">
         <div class="profile">
@@ -130,7 +131,6 @@
       $('.container').append(템플릿)
     }) 
   });
-
 
   </script>
   
