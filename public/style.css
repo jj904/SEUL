@@ -74,9 +74,22 @@
 }
 
 .join {
-  color: white;
+  color: black;
   display: flex;
   align-items: center;  /* 세로축 가운데 정렬 */
   justify-content: center; /* 가로축 가운데 정렬 */
   font-size: 15px;
+}
+
+.tutorial {
+  width: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.tutorial_join {
+  width: 200px;
+  height: 180;
+  padding: 20px;
+  box-sizing: border-box;
 }
