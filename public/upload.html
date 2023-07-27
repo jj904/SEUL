@@ -17,7 +17,7 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg" style="background-color: #FDD835;">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">Seul.</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,42 +85,42 @@
     const storage = getStorage();
     
     $('#send').click(async function() {
-      // 선택한 파일 찾기
-      var file = document.querySelector('#image').files[0];
-      // 저장할 경로 설정
-      var storageRef = ref(storage, 'image/' + file.name);
-      // 파일 업로드
-      var uploadTask = uploadBytesResumable(storageRef, file);
-      
-      uploadTask.on('state_changed', 
-        null, 
-        //에러 발생시 동작하는 함수
-        (error) => {
-            console.error('업로드 실패사유:', error);
-        }, 
-        //업로드 성공시 동작하는 함수
-        async () => {
-            // 업로드된 이미지의 URL을 가져옵니다.
-            const url = await getDownloadURL(uploadTask.snapshot.ref);
-
-            console.log('업로드된 경로:', url);
-
-            // Firestore에 저장할 데이터
-            var 저장할거 = { 
-                제목 : $('#title').val(),
-                이미지 : url,
-                내용 : $('#content').val(),
-            };
+        // 선택한 파일 찾기
+        var file = document.querySelector('#image').files[0];
+        // 저장할 경로 설정
+        var storageRef = ref(storage, 'image/' + file.name);
+        // 파일 업로드
+        var uploadTask = uploadBytesResumable(storageRef, file);
         
-            try {
-                // Firestore에 데이터 추가
-                await addDoc(collection(db, 'feed'), 저장할거);
-                window.location.href = '/index.html';
-            } catch (e) {
-                console.error('Error: ', e);
+        uploadTask.on('state_changed', 
+            null, 
+            //에러 발생시 동작하는 함수
+            (error) => {
+                console.error('업로드 실패사유:', error);
+            }, 
+            //업로드 성공시 동작하는 함수
+            async () => {
+                // 업로드된 이미지의 URL을 가져옵니다.
+                const url = await getDownloadURL(uploadTask.snapshot.ref);
+
+                console.log('업로드된 경로:', url);
+
+                // Firestore에 저장할 데이터
+                var 저장할거 = { 
+                    제목 : $('#title').val(),
+                    이미지 : [url, '', '', ''],
+                    내용 : $('#content').val(),
+                };
+            
+                try {
+                    // Firestore에 데이터 추가
+                    await addDoc(collection(db, 'feed'), 저장할거);
+                    window.location.href = '/index.html';
+                } catch (e) {
+                    console.error('Error: ', e);
+                }
             }
-        }
-      );
+        );
     });
 </script>
 
