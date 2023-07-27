@@ -31,6 +31,9 @@
           <li class="nav-item">
             <a class="nav-link" href="upload.html">Create</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tutorial.html">Tutorial</a>
+          </li>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -42,6 +45,7 @@
   
   
     <div class="container mt-3">
+        <h3>If you create frame, you can't delete!</h3>
         <input type="text" class="form-control mt-2" id="title" placeholder="title">
         <input type="text" class="form-control mt-2" id="content" placeholder="content">
         <input class="form-control mt-2" type="file" id="image">
@@ -110,8 +114,9 @@
                     제목 : $('#title').val(),
                     이미지 : [url, '', '', ''],
                     내용 : $('#content').val(),
+                    좋아요 : 0,  // 좋아요 필드 추가, 초기값 : 0
+                    createdAt : new Date(),
                 };
-            
                 try {
                     // Firestore에 데이터 추가
                     await addDoc(collection(db, 'feed'), 저장할거);
