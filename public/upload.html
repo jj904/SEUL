@@ -43,6 +43,17 @@
         <input type="text" class="form-control mt-2" id="title" placeholder="title">
         <input type="text" class="form-control mt-2" id="content" placeholder="content">
         <input class="form-control mt-2" type="file" id="image">
+
+        <h3>Preview</h3>
+        <!-- 미리보기를 위한 div 추가 -->
+        <div class="frame">
+            <img class="frame-img" id="preview" src="#" alt="image preview" hidden>
+            <img class="frame-img">
+            <img class="frame-img">
+            <img class="frame-img">
+            <h4 class="seul">Seul.</h4>
+        </div>
+
         <button class="btn btn-danger mt-3" id="send">Create</button>
     </div>
 
@@ -81,6 +92,18 @@
 
     // Storage 액세스
     const storage = getStorage();
+
+    $("#image").change(function() {
+        let reader = new FileReader();
+
+        reader.onload = function(e) {
+            $("#preview").attr('src', e.target.result); // 이미지 소스를 선택된 이미지로 설정
+            $("#preview").attr('hidden', false); // 미리보기 이미지 표시
+        }
+
+        reader.readAsDataURL(this.files[0]); // 선택된 파일을 데이터 URL로 읽기
+    });
+
     
     $('#send').click(async function() {
         // 선택한 파일 찾기
