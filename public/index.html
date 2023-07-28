@@ -1,125 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seul.</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seul.</title>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <!-- bootstrap - css-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  
-  <!-- html2canvas - js -->
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- bootstrap - css-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
 
-</head>
-<body>
-  <!-- bootstrap - js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- html2canvas - js -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <!-- bootstrap - js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
 
-<!-- navbar -->
-<nav class="navbar navbar-expand-lg" style="background-color: #FDD835;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Seul.</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Feed</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="upload.html">Create</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tutorial.html">Tutorial</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #fdd835">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Seul.</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Feed</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="upload.html">Create</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tutorial.html">Tutorial</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-<!-- 피드 레이아웃 -->
-<div class="container mt-3"></div> 
+    <!-- 피드 레이아웃 -->
+    <div class="container mt-3"></div>
 
-  <!-- firebase sdk -->
-  <script type="module">
-    // SDK에서 필요한 함수들을 import
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
-    import { getDocs } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-    import { orderBy, query } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+    <!-- firebase sdk -->
+    <script type="module">
+      // SDK에서 필요한 함수들을 import
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+      import {
+        getStorage,
+        ref,
+        uploadBytesResumable,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+      import {
+        getFirestore,
+        addDoc,
+        collection,
+        getDocs,
+        orderBy,
+        query,
+        doc,
+        updateDoc,
+        deleteDoc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
-    import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+      // Import the necessary Firebase functions
+      import { arrayRemove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+      // deleteObject 함수 import
+      import { deleteObject } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
-  // Import the functions you need from the SDKs you need
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+      // Import the functions you need from the SDKs you need
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAuEeVRiQMZ4WjK7SoLy4VSHE-NK-8oDhQ",
-    authDomain: "seulfortest.firebaseapp.com",
-    projectId: "seulfortest",
-    storageBucket: "seulfortest.appspot.com",
-    messagingSenderId: "961005853275",
-    appId: "1:961005853275:web:5e8b64f9be222db42bfd7e",
-    measurementId: "G-NT0GWW4ZBR"
-  };
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAuEeVRiQMZ4WjK7SoLy4VSHE-NK-8oDhQ",
+        authDomain: "seulfortest.firebaseapp.com",
+        projectId: "seulfortest",
+        storageBucket: "seulfortest.appspot.com",
+        messagingSenderId: "961005853275",
+        appId: "1:961005853275:web:5e8b64f9be222db42bfd7e",
+        measurementId: "G-NT0GWW4ZBR",
+      };
 
-    // Firebase 초기화
-    const app = initializeApp(firebaseConfig);
+      // Firebase 초기화
+      const app = initializeApp(firebaseConfig);
 
-    // Firebase Analytics 초기화
-    const analytics = getAnalytics(app);
+      // Firebase Analytics 초기화
+      const analytics = getAnalytics(app);
 
-    // Firestore 액세스
-    const db = getFirestore();
+      // Firestore 액세스
+      const db = getFirestore();
 
-    // Storage 액세스
-    const storage = getStorage();
-  
-    const productCollection = collection(db, 'feed');
-    const productQuery = query(productCollection, orderBy("createdAt", "desc"));
+      // Storage 액세스
+      const storage = getStorage();
 
-    getDocs(productQuery).then((결과) => {
+      const productCollection = collection(db, "feed");
+      const productQuery = query(
+        productCollection,
+        orderBy("createdAt", "desc")
+      );
+
+      getDocs(productQuery).then((결과) => {
         결과.docs.forEach((doc) => {
           const imageData = doc.data(); // Get doc data
           const docId = doc.id; // Get document id
           let joinImageUrl = [];
 
-          if(imageData.hasOwnProperty('joinimage') && Array.isArray(imageData.joinimage)){
+          if (
+            imageData.hasOwnProperty("joinimage") &&
+            Array.isArray(imageData.joinimage)
+          ) {
             // Check if 'joinimage' field exists and it's an array
             joinImageUrl = imageData.joinimage; // 이미지 URL들의 배열
           }
+
+          // Get post ID from URL query params in upload.html
+          const urlParams = new URLSearchParams(window.location.search);
+          const postId = urlParams.get("postId");
 
           let imageTemplates = [];
 
           // 첫 번째 이미지는 항상 imageData.이미지에 있습니다.
           imageTemplates[0] = `<img class="frame-img" src="${imageData.이미지}" alt="Image">`;
 
-          // 추가된 이미지들을 표시합니다.
           for (let i = 0; i < 3; i++) {
             if (joinImageUrl[i]) {
-              imageTemplates[i+1] = `<img class="frame-img" src="${joinImageUrl[i]}" alt="Join Image">`;
+              imageTemplates[i + 1] = `<img class="frame-img" src="${
+                joinImageUrl[i]
+              }" data-index="${i + 1}" alt="Join Image">`;
             } else {
-              // No image for this slot, show an empty slot image
-              // 사용자가 이미지를 추가할 수 있도록 링크를 제공 / 빈 페이지를 클릭하면 Join 가능
-              // 프레임이 다 차있으면 링크 없음
-              imageTemplates[i+1] = `<a href="join.html?postId=${docId}"><img class="frame-img" src="empty-slot.png"></a>`;
+              imageTemplates[
+                i + 1
+              ] = `<a href="join.html?postId=${docId}"><img class="frame-img"></a>`;
             }
-          }    
+          }
 
           // 나머지 템플릿 생성
           var 템플릿 = `<div class="box">
@@ -134,11 +190,11 @@
               </ul>
             </div>
           </div>
-          <div class="frame">
-            ${imageTemplates.join('')}
+          <div class="frame" data-id="${docId}">
+            ${imageTemplates.join("")}
             <h4 class="seul">Seul.</h4>
           </div>
-          <br>
+          <br>      
           <p class="content">#${imageData.내용}</p>
           
           <div class="likes" data-id="${doc.id}" data-liked="false">
@@ -148,61 +204,154 @@
           </div>
         </div> <br>`;
 
-        $('.container').append(템플릿);
-      });
+          $(".container").append(템플릿);
+        });
 
-      // 좋아요 기능
-      async function updateLikeCount(postId, newCount) {
-          const postRef = doc(db, 'feed', postId);
+        // 좋아요 기능
+        async function updateLikeCount(postId, newCount) {
+          const postRef = doc(db, "feed", postId);
           await updateDoc(postRef, { 좋아요: newCount });
-      }
+        }
 
-            $(document).on('click', '.like-icon', async function() {
+        $(document).on("click", ".like-icon", async function () {
           let $likeContainer = $(this).parent();
-          let postId = $likeContainer.data('id');
-          let isLiked = $likeContainer.data('liked');
-          let $likeCount = $likeContainer.find('.like-count');
+          let postId = $likeContainer.data("id");
+          let isLiked = $likeContainer.data("liked");
+          let $likeCount = $likeContainer.find(".like-count");
 
           if (isLiked) {
-              // 좋아요를 취소하고 Firestore 업데이트
-              let newCount = Number($likeCount.text()) - 1;
-              await updateLikeCount(postId, newCount);
+            // 좋아요를 취소하고 Firestore 업데이트
+            let newCount = Number($likeCount.text()) - 1;
+            await updateLikeCount(postId, newCount);
 
-              $likeContainer.data('liked', false);
-              $(this).attr('src', './image/heart1.png');
-              $likeCount.text(newCount);
+            $likeContainer.data("liked", false);
+            $(this).attr("src", "./image/heart1.png");
+            $likeCount.text(newCount);
           } else {
-              // 좋아요를 추가하고 Firestore 업데이트
-              let newCount = Number($likeCount.text()) + 1;
-              await updateLikeCount(postId, newCount);
+            // 좋아요를 추가하고 Firestore 업데이트
+            let newCount = Number($likeCount.text()) + 1;
+            await updateLikeCount(postId, newCount);
 
-              $likeContainer.data('liked', true);
-              $(this).attr('src', './image/heart2.png');
-              $likeCount.text(newCount);
+            $likeContainer.data("liked", true);
+            $(this).attr("src", "./image/heart3.png");
+            $likeCount.text(newCount);
           }
-      });
+        });
 
+        // Join한 Frame 삭제
+
+        // 이미지 URL에서 파일 경로를 추출하는 함수
+        function extractFilePathFromURL(imageUrl) {
+          // 이미지 URL에서 파일 경로 추출하기
+          // 예를 들어, imageUrl이 "https://firebasestorage.googleapis.com/v0/b/seulfortest.appspot.com/o/image%2F20221227_170902.jpg?alt=media&token=245f0f58-59eb-4472-9644-dc7897df9f41" 형식이라면,
+          // 파일 경로인 "image%2F20221227_170902.jpg" 부분만 추출하여 반환합니다.
+          const startIndex = imageUrl.lastIndexOf("/") + 1;
+          const endIndex = imageUrl.indexOf("?");
+          return imageUrl.substring(startIndex, endIndex);
+        }
+
+        // Join한 이미지를 Firestore와 Storage에서 삭제하는 함수
+        async function removeJoinImage(postId, joinImageIndex) {
+          const postRef = doc(db, "feed", postId);
+
+          try {
+            const postSnap = await getDoc(postRef);
+            const imageData = postSnap.data();
+
+            if (
+              imageData.hasOwnProperty("이미지") &&
+              Array.isArray(imageData.이미지) &&
+              imageData.hasOwnProperty("joinimage") &&
+              Array.isArray(imageData.joinimage)
+            ) {
+              const joinImageArray = imageData.joinimage;
+
+              console.log("joinImageIndex:", joinImageIndex);
+              console.log("imageData:", imageData);
+              console.log("joinImageArray:", joinImageArray);
+
+              // 인덱스가 올바른 범위 내에 있는지 확인
+              if (
+                joinImageIndex >= 0 &&
+                joinImageIndex <= joinImageArray.length
+              ) {
+                const joinImageToDelete = joinImageArray[joinImageIndex];
+                const filePath = joinImageToDelete.replace(
+                  "gs://seulfortest.appspot.com/",
+                  ""
+                );
+
+                console.log("joinImageToDelete:", joinImageToDelete);
+                console.log("filePath:", filePath);
+
+                // Storage에서 joinimage 삭제
+                const imageRef = ref(storage, filePath);
+                await deleteObject(imageRef);
+
+                // joinimage 배열에서 이미지 URL 삭제
+                joinImageArray.splice(joinImageIndex, 1);
+
+                // 배열을 다시 Firestore 업데이트
+                await updateDoc(postRef, {
+                  joinimage: joinImageArray,
+                });
+              }
+            }
+          } catch (error) {
+            console.error("Error removing joinimage:", error);
+          }
+        }
+
+        $(document).on("click", ".frame-img", async function () {
+          let $frame = $(this).closest(".frame");
+          let postId = $frame.data("id");
+          let imageIndex = $(this).data("index");
+
+          // 이미지가 클릭되지 않은 경우 아무 동작도 하지 않음
+          if (typeof imageIndex === "undefined") {
+            return;
+          }
+
+          // 이미지가 채워져 있는지 확인
+          if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
+            // 첫 번째 이미지인 경우 삭제 불가
+            if (imageIndex === 0) {
+              // 이미지가 첫 번째인 경우 아무 동작도 하지 않음
+              return;
+            }
+            // 이미지 삭제 확인
+            if (confirm("해당 사진을 삭제하시겠습니까?")) {
+              console.log("imageIndex : ", imageIndex);
+              // 이미지 삭제
+              await removeJoinImage(postId, imageIndex - 1);
+
+              // 프레임에서 이미지 삭제 후 빈 프레임 이미지로 교체
+              $(this).replaceWith(
+                `<a href="join.html?postId=${postId}"><img class="frame-img"></a>`
+              );
+            }
+          } else {
+            // 이미지가 채워져 있지 않으면 join.html로 이동
+            window.location.href = `join.html?postId=${postId}`;
+          }
+        });
 
         // Save frame as an image
-        $(document).on('click', '.save-option', function(e){
+        $(document).on("click", ".save-option", function (e) {
           e.preventDefault();
 
-          const frameElement = $(this).closest('.box').find('.frame')[0];
+          const frameElement = $(this).closest(".box").find(".frame")[0];
 
-          html2canvas(frameElement, { useCORS: true }).then(function(canvas) {
-            let el = document.createElement('a');
-            el.href = canvas.toDataURL('image/jpeg');
-            el.download = 'frame.jpg'; // 파일명 설정
+          html2canvas(frameElement, { useCORS: true }).then(function (canvas) {
+            let el = document.createElement("a");
+            el.href = canvas.toDataURL("image/jpeg");
+            el.download = "frame.jpg"; // 파일명 설정
             document.body.appendChild(el);
             el.click();
             document.body.removeChild(el);
           });
         });
-
-    });
-
-</script>
-  
-
-</body>
+      });
+    </script>
+  </body>
 </html>

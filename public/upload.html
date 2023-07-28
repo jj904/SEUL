@@ -1,150 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <!-- bootstrap - css-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-</head>
-<body>
-  <!-- bootstrap - js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- bootstrap - css-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- bootstrap - js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-  
-  <!-- navbar -->
-  <nav class="navbar navbar-expand-lg" style="background-color: #FDD835;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">Seul.</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Feed</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-  
-  
-    <div class="container mt-3">
-        <h3>If you create frame, you can't delete!</h3>
-        <input type="text" class="form-control mt-2" id="title" placeholder="title">
-        <input type="text" class="form-control mt-2" id="content" placeholder="content">
-        <input class="form-control mt-2" type="file" id="image">
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
 
-        <h3>Preview</h3>
-        <!-- 미리보기를 위한 div 추가 -->
-        <div class="frame">
-            <img class="frame-img" id="preview">
-            <img class="frame-img">
-            <img class="frame-img">
-            <img class="frame-img">
-            <h4 class="seul">Seul.</h4>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #fdd835">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Seul.</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Feed</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
         </div>
+      </div>
+    </nav>
 
-        <button class="btn btn-danger mt-3" id="send">Create</button>
+    <div class="container mt-3">
+      <h3>If you create frame, you can't delete!</h3>
+      <input
+        type="text"
+        class="form-control mt-2"
+        id="title"
+        placeholder="title"
+      />
+      <input
+        type="text"
+        class="form-control mt-2"
+        id="content"
+        placeholder="content"
+      />
+      <input class="form-control mt-2" type="file" id="image" />
+
+      <h3>Preview</h3>
+      <!-- 미리보기를 위한 div 추가 -->
+      <div class="frame">
+        <img class="frame-img" id="preview" />
+        <img class="frame-img" />
+        <img class="frame-img" />
+        <img class="frame-img" />
+        <h4 class="seul">Seul.</h4>
+      </div>
+
+      <button class="btn btn-danger mt-3" id="send">Create</button>
     </div>
 
-<!-- firebase sdk -->
-<script type="module">
-    // SDK에서 필요한 함수들을 import
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
-    
-  // Import the functions you need from the SDKs you need
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    <!-- firebase sdk -->
+    <script type="module">
+      // SDK에서 필요한 함수들을 import
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+      import {
+        getFirestore,
+        addDoc,
+        collection,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+      import {
+        getStorage,
+        ref,
+        uploadBytesResumable,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAuEeVRiQMZ4WjK7SoLy4VSHE-NK-8oDhQ",
-    authDomain: "seulfortest.firebaseapp.com",
-    projectId: "seulfortest",
-    storageBucket: "seulfortest.appspot.com",
-    messagingSenderId: "961005853275",
-    appId: "1:961005853275:web:5e8b64f9be222db42bfd7e",
-    measurementId: "G-NT0GWW4ZBR"
-  };
+      // Import the functions you need from the SDKs you need
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // Firebase 초기화
-    const app = initializeApp(firebaseConfig);
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAuEeVRiQMZ4WjK7SoLy4VSHE-NK-8oDhQ",
+        authDomain: "seulfortest.firebaseapp.com",
+        projectId: "seulfortest",
+        storageBucket: "seulfortest.appspot.com",
+        messagingSenderId: "961005853275",
+        appId: "1:961005853275:web:5e8b64f9be222db42bfd7e",
+        measurementId: "G-NT0GWW4ZBR",
+      };
 
-    // Firebase Analytics 초기화
-    const analytics = getAnalytics(app);
+      // Firebase 초기화
+      const app = initializeApp(firebaseConfig);
 
-    // Firestore 액세스
-    const db = getFirestore();
+      // Firebase Analytics 초기화
+      const analytics = getAnalytics(app);
 
-    // Storage 액세스
-    const storage = getStorage();
+      // Firestore 액세스
+      const db = getFirestore();
 
-    $("#image").change(function() {
+      // Storage 액세스
+      const storage = getStorage();
+
+      $("#image").change(function () {
         let reader = new FileReader();
 
-        reader.onload = function(e) {
-            $("#preview").attr('src', e.target.result); // 이미지 소스를 선택된 이미지로 설정
-            $("#preview").attr('hidden', false); // 미리보기 이미지 표시
-        }
+        reader.onload = function (e) {
+          $("#preview").attr("src", e.target.result); // 이미지 소스를 선택된 이미지로 설정
+          $("#preview").attr("hidden", false); // 미리보기 이미지 표시
+        };
 
         reader.readAsDataURL(this.files[0]); // 선택된 파일을 데이터 URL로 읽기
-    });
+      });
 
-    
-    $('#send').click(async function() {
+      $("#send").click(async function () {
         // 선택한 파일 찾기
-        var file = document.querySelector('#image').files[0];
+        var file = document.querySelector("#image").files[0];
         // 저장할 경로 설정
-        var storageRef = ref(storage, 'image/' + file.name);
+        var storageRef = ref(storage, "image/" + file.name);
         // 파일 업로드
         var uploadTask = uploadBytesResumable(storageRef, file);
-        
-        uploadTask.on('state_changed', 
-            null, 
-            //에러 발생시 동작하는 함수
-            (error) => {
-                console.error('업로드 실패사유:', error);
-            }, 
-            //업로드 성공시 동작하는 함수
-            async () => {
-                // 업로드된 이미지의 URL을 가져옵니다.
-                const url = await getDownloadURL(uploadTask.snapshot.ref);
 
-                console.log('업로드된 경로:', url);
+        uploadTask.on(
+          "state_changed",
+          null,
+          //에러 발생시 동작하는 함수
+          (error) => {
+            console.error("업로드 실패사유:", error);
+          },
+          //업로드 성공시 동작하는 함수
+          async () => {
+            // 업로드된 이미지의 URL을 가져옵니다.
+            const url = await getDownloadURL(uploadTask.snapshot.ref);
 
-                // Firestore에 저장할 데이터
-                var 저장할거 = { 
-                    제목 : $('#title').val(),
-                    이미지 : [url, '', '', ''],
-                    내용 : $('#content').val(),
-                    좋아요 : 0,  // 좋아요 필드 추가, 초기값 : 0
-                    createdAt : new Date(),
-                };
-                try {
-                    // Firestore에 데이터 추가
-                    await addDoc(collection(db, 'feed'), 저장할거);
-                    window.location.href = '/index.html';
-                } catch (e) {
-                    console.error('Error: ', e);
-                }
+            console.log("업로드된 경로:", url);
+
+            // Firestore에 저장할 데이터
+            var 저장할거 = {
+              제목: $("#title").val(),
+              이미지: [url, "", "", ""],
+              내용: $("#content").val(),
+              좋아요: 0, // 좋아요 필드 추가, 초기값 : 0
+              createdAt: new Date(),
+            };
+            try {
+              // Firestore에 데이터 추가
+              await addDoc(collection(db, "feed"), 저장할거);
+              window.location.href = "/index.html";
+            } catch (e) {
+              console.error("Error: ", e);
             }
+          }
         );
-    });
-</script>
-
-</body>
+      });
+    </script>
+  </body>
 </html>

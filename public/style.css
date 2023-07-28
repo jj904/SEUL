@@ -1,38 +1,37 @@
 /* 하나의 프레임이 있는 box 입니다! */
-
-  .box {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 10px;
-    box-sizing: border-box;
+.box {
+  width: 300px;
+  padding: 20px;
+  border: 2px solid #fdd835;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-
 /* 해쉬태그 관련입니다! */
-.feed .content {
-  font-size: 16px;
-  font-weight: 600;
+.content {
+  font-size: 20px;
+  color: #939393;
 }
 
 /* 나중에 유저 id들어갈 곳입니다! */
-.feed .title {
-  font-size: 16px;
-  font-weight: 600;
+.title {
+  font-size: 20px;
 }
 
 /* 프로필 입니다 */
 .profile {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .profile-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 /* 이미지 저장이 가능한 more 버튼 */
@@ -44,31 +43,35 @@
 }
 
 .username {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 /* 네컷 사진 아래 들어가는 seul. 로고 입니다 */
 .seul {
-    color: white;
-    display: flex;
-    align-items: center;  /* 세로축 가운데 정렬 */
-    justify-content: center; /* 가로축 가운데 정렬 */
-    font-size: 15px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  /* 여기는 frame에 가야지 작동됩니다. 
+  display: flex;
+  align-items: center; 
+  justify-content: center;*/
 }
 
 /* 노랑 배경이 있고 네 컷을 다 담는 frame 입니다 */
 .frame {
-    width: 200px;
-    padding: 10px;
-    background-color: #FDD835;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-wrap: wrap;
+  width: 200px;
+  padding: 10px;
+  background-color: #fdd835;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; /* 세로축 가운데 정렬 */
+  justify-content: center; /* 가로축 가운데 정렬 */
 }
 
 /* 프레임 내부 각각의 이미지 관련 css입니다 */
@@ -81,10 +84,21 @@
   background-position: center;
 }
 
+.join-img {
+  border-radius: 50%;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 5px solid #fdd835;
+  position: absolute;
+}
+
 .join {
   color: black;
   display: flex;
-  align-items: center;  /* 세로축 가운데 정렬 */
+  align-items: center; /* 세로축 가운데 정렬 */
   justify-content: center; /* 가로축 가운데 정렬 */
   font-size: 15px;
 }
@@ -102,10 +116,9 @@
   box-sizing: border-box;
 }
 
-
 .likes {
   width: 50px;
-  height: 50px;
+  height: 40px;
   display: flex;
   align-items: left;
   /* 이외의 스타일 */
