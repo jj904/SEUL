@@ -186,7 +186,8 @@
             <div class="dropdown">
               <img class="more-img" src="./image/more_vert.png" alt="More" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item save-option" href="#">Contact Us</a></li>
+                <li><a class="dropdown-item save-option" href="contact.html
+                  ">Contact Us</a></li>
               </ul>
             </div>
           </div>
@@ -341,20 +342,20 @@
         });
 
         // Save frame as an image
-        $(document).on("click", ".save-option", function (e) {
-          e.preventDefault();
+        // $(document).on("click", ".save-option", function (e) {
+        //   e.preventDefault();
 
-          const frameElement = $(this).closest(".box").find(".frame")[0];
+        //   const frameElement = $(this).closest(".box").find(".frame")[0];
 
-          html2canvas(frameElement, { useCORS: true }).then(function (canvas) {
-            let el = document.createElement("a");
-            el.href = canvas.toDataURL("image/jpeg");
-            el.download = "frame.jpg"; // 파일명 설정
-            document.body.appendChild(el);
-            el.click();
-            document.body.removeChild(el);
-          });
-        });
+        //   html2canvas(frameElement, { useCORS: true }).then(function (canvas) {
+        //     let el = document.createElement("a");
+        //     el.href = canvas.toDataURL("image/jpeg");
+        //     el.download = "frame.jpg"; // 파일명 설정
+        //     document.body.appendChild(el);
+        //     el.click();
+        //     document.body.removeChild(el);
+        //   });
+        // });
       });
     </script>
   </body>
