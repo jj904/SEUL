@@ -2,7 +2,7 @@
 .box {
   width: 300px;
   padding: 20px;
-  /* border: 2px solid #FDD835;  */
+  border: 2px solid #FDD835; 
   border-radius: 10px;
   box-sizing: border-box;
   margin-left: auto;
@@ -11,7 +11,7 @@
 
 .divide-line{
   width: 300px;
-  height: 3px;
+  height: 1px;
   background-color: #FDD835;
   border: none;
   margin-left: auto;
@@ -43,8 +43,7 @@ font-size: 20px;
   margin-right: 10px;
 }
 
-/* 이미지 저장이 가능한 more 버튼 */
-/* 오른쪽 정렬 하고 싶은데 안 됩니다..ㅠㅠ */
+
 .more-img {
   position: absolute; 
   right: -150px;
@@ -133,4 +132,54 @@ height: 40px;
 display: flex;
 align-items: left;
 /* 이외의 스타일 */
+}
+
+/************
+*upload.html*
+*************/
+.create-box{
+  box-sizing: border-box;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.create-info{ 
+  box-sizing: border-box;
+  padding-top: 150px;
+  width: 50%;
+  float: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;  
+  justify-content: center;
+}
+.create-info input{
+    height: 60px;
+    margin-bottom: 40px;
+    border-radius: 30px;
+    background-color: #E7E7E7;
+    font-size: 20px;
+    text-indent:2em;
+}
+
+.create-info button{
+  width: 100px;
+  height: 50px;
+  border-radius: 20px;
+  font-size: 22px;
+}
+
+.create-preview{
+  margin-top: 50px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 30px;
+  font-weight: bold;
+  color: #FDD835;
+  margin-left: auto;
+  margin-right: auto; 
 }
