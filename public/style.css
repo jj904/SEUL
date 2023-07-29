@@ -2,7 +2,7 @@
 .box {
   width: 300px;
   padding: 20px;
-  border: 2px solid #FDD835; 
+  /* border: 2px solid #FDD835;  */
   border-radius: 10px;
   box-sizing: border-box;
   margin-left: auto;
@@ -10,7 +10,6 @@
 }
 
 .divide-line{
-  
   width: 300px;
   height: 3px;
   background-color: #FDD835;
