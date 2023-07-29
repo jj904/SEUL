@@ -52,23 +52,21 @@
               >
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
 
     <div class="container mt-3">
       <input class="form-control mt-2" type="file" id="image" />
+      <h3>Preview</h3>
+      <!-- 미리보기를 위한 div 추가 -->
+      <div class="frame">
+        <img class="frame-img" id="image-0" />
+        <img class="frame-img" id="image-1" />
+        <img class="frame-img" id="image-2" />
+        <img class="frame-img" id="image-3" />
+        <h4 class="seul">Seul.</h4>
+      </div>
       <button class="btn btn-danger mt-3" id="send">Join</button>
     </div>
 
@@ -89,9 +87,17 @@
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
       import {
         doc,
+        getDoc,
         updateDoc,
         arrayUnion,
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+      import {
+        getAuth,
+        signInWithPopup,
+        GoogleAuthProvider,
+        FacebookAuthProvider,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
       // Your web app's Firebase configuration
       const firebaseConfig = {
@@ -103,15 +109,29 @@
         appId: "1:961005853275:web:5e8b64f9be222db42bfd7e",
         measurementId: "G-NT0GWW4ZBR",
       };
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 
       // Firebase 초기화
       const app = initializeApp(firebaseConfig);
+
+      // Firebase Analytics 초기화
+      const analytics = getAnalytics(app);
 
       // Firestore 액세스
       const db = getFirestore();
 
       // Storage 액세스
       const storage = getStorage();
+
+      // Authentication 서비스 초기화
+      const auth = getAuth();
+
+      let userUid; // user uid를 저장할 전역변수 추가
+      onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
+          userUid = currentUser.uid; // 사용자의 uid 저장
+        }
+      });
 
       $("#send").click(async function () {
         // 선택한 파일 찾기
@@ -132,20 +152,31 @@
           async () => {
             // 업로드된 이미지의 URL을 가져옵니다.
             const url = await getDownloadURL(uploadTask.snapshot.ref);
-            console.log("업로드된 경로:", url);
-
             // url 쿼리에서 게시물 id를 가져옵니다.
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get("postId");
 
-            // Firestore에 업데이트할 데이터
-            var updateData = {
-              joinimage: arrayUnion(url),
-            };
+            const postRef = doc(db, "feed", postId);
 
             try {
-              // Firestore에 데이터 추가
-              await updateDoc(doc(db, "feed", postId), updateData);
+              const postRef = doc(db, "feed", postId);
+              // get the current document
+              const postDoc = await getDoc(postRef);
+              const currentData = postDoc.data();
+
+              // update the makers array
+              const makers = currentData.makers;
+              const emptySlotIndex = makers.indexOf(""); // 첫 번째 빈 문자열의 위치를 찾습니다.
+
+              if (emptySlotIndex !== -1) {
+                makers[emptySlotIndex] = userUid; // 첫 번째 빈 문자열의 위치에 userUid를 저장합니다.
+              }
+
+              await updateDoc(postRef, {
+                joinimage: arrayUnion(url),
+                makers: makers, // 업데이트된 makers 배열을 Firestore에 저장합니다.
+              });
+
               window.location.href = "/index.html";
             } catch (e) {
               console.error("Error: ", e);
@@ -153,16 +184,6 @@
           }
         );
       });
-      //         // Fetch post ID from sessionStorage
-      //         const postId = sessionStorage.getItem('postId');
-
-      //         try {
-      //             // Firestore에 데이터 추가
-      //             await updateDoc(doc(db, 'feed', postId), 저장할거);
-      //             window.location.href = '/index.html';
-      //         } catch (e) {
-      //             console.error('Error: ', e);
-      //         }
     </script>
   </body>
 </html>

@@ -1,112 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seul.</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seul.</title>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <!-- bootstrap - css-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  
-  <!-- html2canvas - js -->
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- bootstrap - css-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <!-- html2canvas - js -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  </head>
+  <body style="background-color: #ffeb3b">
+    <!-- bootstrap - js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
 
-</head>
-<body>
-  <!-- bootstrap - js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #fdd835">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Seul.</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Feed</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="create-link" href="upload.html">Create</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tutorial.html">Tutorial</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-<!-- navbar -->
-<nav class="navbar navbar-expand-lg" style="background-color: #FDD835;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Seul.</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Feed</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="upload.html">Create</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tutorial.html">Tutorial</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    <!-- 로그인 레이아웃 -->
+    <div class="login">
+      <h4 class="seulLogo">Seul.</h4>
+      <button id="gogleLogin" class="login-with-google-btn">
+        Sign in with Google
+      </button>
+      <br />
+      <button id="facebookLogin" class="login-with-facebook-btn">
+        Sign in with Facebook
+      </button>
     </div>
-  </div>
-</nav>
+    <!-- firebase sdk -->
+    <script type="module">
+      // SDK에서 필요한 함수들을 import
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+      import {
+        getFirestore,
+        addDoc,
+        collection,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+      import {
+        getStorage,
+        ref,
+        uploadBytesResumable,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+      import { getDocs } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+      import {
+        orderBy,
+        query,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
-<!-- 피드 레이아웃 -->
-<div class="container mt-3">
-    <div class="mb-3">
-      <input type="text" class="form-control" placeholder="name" id="name-new">
-    </div>
-    <div class="mb-3">
-      <input type="email" class="form-control" placeholder="email" id="email-new">
-    </div>
-    <div class="mb-3">
-      <input type="password" class="form-control" placeholder="pw" id="pw-new">
-    </div>
-    <button type="submit" class="btn btn-primary" id="register">가입하기</button>
- </div>
+      import {
+        doc,
+        updateDoc,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
-  <!-- firebase sdk -->
-  <script type="module">
-    // SDK에서 필요한 함수들을 import
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
-    import { getDocs } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-    import { orderBy, query } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+      import {
+        getAuth,
+        signInWithPopup,
+        GoogleAuthProvider,
+        FacebookAuthProvider,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+      // Import the functions you need from the SDKs you need
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
-    import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAuEeVRiQMZ4WjK7SoLy4VSHE-NK-8oDhQ",
+        authDomain: "seulfortest.firebaseapp.com",
+        projectId: "seulfortest",
+        storageBucket: "seulfortest.appspot.com",
+        messagingSenderId: "961005853275",
+        appId: "1:961005853275:web:5e8b64f9be222db42bfd7e",
+        measurementId: "G-NT0GWW4ZBR",
+      };
 
-  // Import the functions you need from the SDKs you need
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+      // Firebase 초기화
+      const app = initializeApp(firebaseConfig);
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAuEeVRiQMZ4WjK7SoLy4VSHE-NK-8oDhQ",
-    authDomain: "seulfortest.firebaseapp.com",
-    projectId: "seulfortest",
-    storageBucket: "seulfortest.appspot.com",
-    messagingSenderId: "961005853275",
-    appId: "1:961005853275:web:5e8b64f9be222db42bfd7e",
-    measurementId: "G-NT0GWW4ZBR"
-  };
+      // Firebase Analytics 초기화
+      const analytics = getAnalytics(app);
 
-    // Firebase 초기화
-    const app = initializeApp(firebaseConfig);
+      // Firestore 액세스
+      const db = getFirestore();
 
-    // Firebase Analytics 초기화
-    const analytics = getAnalytics(app);
+      // Storage 액세스
+      const storage = getStorage();
 
-    // Firestore 액세스
-    const db = getFirestore();
+      // 로그인
+      const provider1 = new GoogleAuthProvider();
+      const provider2 = new FacebookAuthProvider();
+      const auth = getAuth();
 
-    // Storage 액세스
-    const storage = getStorage();
-  
-    const productCollection = collection(db, 'feed');
-    const productQuery = query(productCollection, orderBy("createdAt", "desc"));
+      // Google Login
+      document.getElementById("gogleLogin").addEventListener("click", () => {
+        signInWithPopup(auth, provider1)
+          .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // IdP data available using getAdditionalUserInfo(result)
 
+            // 로그인 성공 후 index.html로 리다이렉트
+            window.location.href = "index.html";
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+          });
+      });
 
-</script>
-  
+      // document.getElementById('facebookLogin').addEventListener
+      // ('click', () => {
+      //   signInWithPopup(auth2, provider2)
+      //     .then((result) => {
+      //       // The signed-in user info.
+      //       const user = result.user;
 
-</body>
+      //       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      //       const credential = FacebookAuthProvider.credentialFromResult(result);
+      //       const accessToken = credential.accessToken;
+
+      //       // IdP data available using getAdditionalUserInfo(result)
+      //       // ...
+      //     })
+      //     .catch((error) => {
+      //       // Handle Errors here.
+      //       const errorCode = error.code;
+      //       const errorMessage = error.message;
+      //       // The email of the user's account used.
+      //       const email = error.customData.email;
+      //       // The AuthCredential type that was used.
+      //       const credential = FacebookAuthProvider.credentialFromError(error);
+
+      //       // ...
+      //     });
+      // })
+    </script>
+  </body>
 </html>
