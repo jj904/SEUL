@@ -186,7 +186,7 @@
             <div class="dropdown">
               <img class="more-img" src="./image/more_vert.png" alt="More" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item save-option" href="#">Save</a></li>
+                <li><a class="dropdown-item save-option" href="#">Contact Us</a></li>
               </ul>
             </div>
           </div>
@@ -194,7 +194,7 @@
             ${imageTemplates.join("")}
             <h4 class="seul">Seul.</h4>
           </div>
-          <br>      
+               
           <p class="content">#${imageData.내용}</p>
           
           <div class="likes" data-id="${doc.id}" data-liked="false">
@@ -266,9 +266,9 @@
             ) {
               const joinImageArray = imageData.joinimage;
 
-              console.log("joinImageIndex:", joinImageIndex);
-              console.log("imageData:", imageData);
-              console.log("joinImageArray:", joinImageArray);
+              // console.log("joinImageIndex:", joinImageIndex);
+              // console.log("imageData:", imageData);
+              // console.log("joinImageArray:", joinImageArray);
 
               // 인덱스가 올바른 범위 내에 있는지 확인
               if (
@@ -281,8 +281,8 @@
                   ""
                 );
 
-                console.log("joinImageToDelete:", joinImageToDelete);
-                console.log("filePath:", filePath);
+                // console.log("joinImageToDelete:", joinImageToDelete);
+                // console.log("filePath:", filePath);
 
                 // Storage에서 joinimage 삭제
                 const imageRef = ref(storage, filePath);
@@ -320,7 +320,7 @@
               return;
             }
             // 이미지 삭제 확인
-            if (confirm("해당 사진을 삭제하시겠습니까?")) {
+            if (confirm("Are you sure delete your image? \nThe order of the current images might be affected!")) {
               console.log("imageIndex : ", imageIndex);
               // 이미지 삭제
               await removeJoinImage(postId, imageIndex - 1);
