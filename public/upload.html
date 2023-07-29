@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Create</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
     <!-- bootstrap - css-->
@@ -68,33 +68,43 @@
     </nav>
 
     <div class="container mt-3">
+    <div class="create-box">
       <h3>Once you create a frame, you can't delete it!</h3>
+      <section class="create-info">
       <input
         type="text"
         class="form-control mt-2"
         id="title"
-        placeholder="title"
+        placeholder="user_name"
       />
       <input
         type="text"
         class="form-control mt-2"
         id="content"
-        placeholder="content"
+        placeholder="Topic of this Frame"
       />
       <input class="form-control mt-2" type="file" id="image" />
 
-      <h3>Preview</h3>
-      <!-- 미리보기를 위한 div 추가 -->
-      <div class="frame">
-        <img class="frame-img" id="preview" />
-        <img class="frame-img" />
-        <img class="frame-img" />
-        <img class="frame-img" />
-        <h4 class="seul">Seul.</h4>
-      </div>
-
       <button class="btn btn-danger mt-3" id="send">Create</button>
-    </div>
+    
+    </section>
+    <section class="create-preview">
+        <!-- 미리보기를 위한 div 추가 -->
+        <h3>Preview</h3>
+        <div class="frame">
+          <img class="frame-img" id="preview" />
+          <img class="frame-img" />
+          <img class="frame-img" />
+          <img class="frame-img" />
+          <h4 class="seul">Seul.</h4>
+        </div>
+    </section>
+  </div>  
+  </div>
+
+
+
+  
 
     <!-- firebase sdk -->
     <script type="module">
