@@ -16,22 +16,23 @@
 ************/
 /* 하나의 프레임이 있는 box 입니다! */
 .box {
+  margin-left: auto;
+  margin-right: auto; 
   width: 300px;
   padding: 20px;
   /* border: 2px solid #FDD835;  */
   border-radius: 10px;
   box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;  
+ 
 }
 
 .divide-line{
-  width: 300px;
+  width: 800px;
   margin-bottom: 20px;
-  border: 2px solid #FDD835; 
+  border: 1px solid #FDD835; 
   /* margin-left: auto;
   margin-right: auto;   */
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 /* 해쉬태그 관련입니다! */
@@ -93,7 +94,7 @@ font-size: 20px;
 
 /* 노랑 배경이 있고 네 컷을 다 담는 frame 입니다 */
 .frame {
-  width: 260px;
+  width: auto;
   padding: 7px;
   background-color: #FDD835;
   box-sizing: border-box;
@@ -145,8 +146,8 @@ align-items: left;
   border-radius: 5px;
   border-color: #FFEB3B;
   border-radius: 50px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   font-size: 15px;
   font-family:monospace;
   font-weight: bold;
@@ -155,7 +156,7 @@ align-items: left;
 #mybutton {
   position: fixed;
   top: 100px;
-  right: 400px;
+  /* right: 330px; */
 }
 
 /************
