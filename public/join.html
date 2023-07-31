@@ -58,15 +58,6 @@
 
     <div class="container mt-3">
       <input class="form-control mt-2" type="file" id="image" />
-      <h3>Preview</h3>
-      <!-- 미리보기를 위한 div 추가 -->
-      <div class="frame">
-        <img class="frame-img" id="image-0" />
-        <img class="frame-img" id="image-1" />
-        <img class="frame-img" id="image-2" />
-        <img class="frame-img" id="image-3" />
-        <h4 class="seul">Seul.</h4>
-      </div>
       <button class="btn btn-danger mt-3" id="send">Join</button>
     </div>
 
@@ -164,17 +155,9 @@
               const postDoc = await getDoc(postRef);
               const currentData = postDoc.data();
 
-              // update the makers array
-              const makers = currentData.makers;
-              const emptySlotIndex = makers.indexOf(""); // 첫 번째 빈 문자열의 위치를 찾습니다.
-
-              if (emptySlotIndex !== -1) {
-                makers[emptySlotIndex] = userUid; // 첫 번째 빈 문자열의 위치에 userUid를 저장합니다.
-              }
-
               await updateDoc(postRef, {
                 joinimage: arrayUnion(url),
-                makers: makers, // 업데이트된 makers 배열을 Firestore에 저장합니다.
+                makers: arrayUnion(userUid), // 업데이트된 makers 배열을 Firestore에 저장합니다.
               });
 
               window.location.href = "/index.html";

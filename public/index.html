@@ -295,8 +295,7 @@
 
         });
 
-
-        // Join한 Frame 삭제
+                // // Join한 Frame 삭제
 
         // 이미지 URL에서 파일 경로를 추출하는 함수
         function extractFilePathFromURL(imageUrl) {
@@ -349,9 +348,14 @@
                 // joinimage 배열에서 이미지 URL 삭제
                 joinImageArray.splice(joinImageIndex, 1);
 
+                // makers 배열에서 해당 인덱스 값 삭제
+                const makersArray = imageData.makers;
+                makersArray.splice(joinImageIndex+1, 1);
+
                 // 배열을 다시 Firestore 업데이트
                 await updateDoc(postRef, {
                   joinimage: joinImageArray,
+                  makers: makersArray
                 });
               }
             }
@@ -360,55 +364,88 @@
           }
         }
 
+
         $(document).on("click", ".frame-img", async function () {
           let $frame = $(this).closest(".frame");
           let postId = $frame.data("id");
           let imageIndex = $(this).data("index");
 
+          // 로그인 상태 확인
+          if (!user) {
+              // 로그인하지 않았다면 login.html로 이동
+              window.location.href = 'login.html';
+              return;
+          }
+
+          const postRef = doc(db, "feed", postId);
+
+          try {
+              const postSnap = await getDoc(postRef);
+              const imageData = postSnap.data();
+              
+          // 이미지가 채워져 있는지 확인
+          if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
+              // 이미지 업로드자와 현재 사용자 비교
+              const makers = Array.isArray(imageData.makers) ? imageData.makers : [];
+              const currentMaker = makers[imageIndex];
+
+              // 사진이 채워져 있는데, 유저가 다른 경우
+              if (user.uid !== currentMaker) { 
+              alert('You cannot delete this image.');
+                return;
+                }
+          }
+              
+          } catch (error) {
+              console.error("Error reading document:", error);
+          }
+
           // 이미지가 클릭되지 않은 경우 아무 동작도 하지 않음
           if (typeof imageIndex === "undefined") {
-            return;
+              return;
           }
 
           // 이미지가 채워져 있는지 확인
           if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
-            // 첫 번째 이미지인 경우 삭제 불가
-            if (imageIndex === 0) {
-              // 이미지가 첫 번째인 경우 아무 동작도 하지 않음
-              return;
-            }
-            // 이미지 삭제 확인
-            if (confirm("Are you sure delete your image? \nThe order of the current images might be affected!")) {
-              console.log("imageIndex : ", imageIndex);
-              // 이미지 삭제
-              await removeJoinImage(postId, imageIndex - 1);
+              // 첫 번째 이미지인 경우 삭제 불가
+              if (imageIndex === 0) {
+                  // 이미지가 첫 번째인 경우 아무 동작도 하지 않음
+                  return;
+              }
 
-              // 프레임에서 이미지 삭제 후 빈 프레임 이미지로 교체
-              $(this).replaceWith(
-                `<a href="join.html?postId=${postId}"><img class="frame-img"></a>`
-              );
-            }
+              // 이미지 삭제 확인
+              if (confirm("Are you sure delete your image? \nThe order of the current images might be affected!")) {
+                  // 이미지 삭제
+                  await removeJoinImage(postId, imageIndex - 1);
+
+                  // 프레임에서 이미지 삭제 후 빈 프레임 이미지로 교체
+                  $(this).replaceWith(
+                      `<a href="join.html?postId=${postId}"><img class="frame-img"></a>`
+                  );
+              }
           } else {
-            // 이미지가 채워져 있지 않으면 join.html로 이동
-            window.location.href = `join.html?postId=${postId}`;
+              // 이미지가 채워져 있지 않으면 join.html로 이동
+              window.location.href = `join.html?postId=${postId}`;
           }
-        });
+      });
 
-        // Save frame as an image
-        $(document).on("click", ".save-option", function (e) {
-          e.preventDefault();
 
-          const frameElement = $(this).closest(".box").find(".frame")[0];
+      //   // Save frame as an image
+      //   $(document).on("click", ".save-option", function (e) {
+      //     e.preventDefault();
 
-          html2canvas(frameElement, { useCORS: true }).then(function (canvas) {
-            let el = document.createElement("a");
-            el.href = canvas.toDataURL("image/jpeg");
-            el.download = "frame.jpg"; // 파일명 설정
-            document.body.appendChild(el);
-            el.click();
-            document.body.removeChild(el);
-          });
-        });
+      //     const frameElement = $(this).closest(".box").find(".frame")[0];
+
+      //     html2canvas(frameElement, { useCORS: true }).then(function (canvas) {
+      //       let el = document.createElement("a");
+      //       el.href = canvas.toDataURL("image/jpeg");
+      //       el.download = "frame.jpg"; // 파일명 설정
+      //       document.body.appendChild(el);
+      //       el.click();
+      //       document.body.removeChild(el);
+      //     });
+      //   });
+      
       });
     </script>
   </body>
