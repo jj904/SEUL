@@ -180,7 +180,7 @@
             } else {
               imageTemplates[
                 i + 1
-              ] = `<a class="frame-link" data-postId="${docId}"><img class="frame-img"></a>`;
+              ] = `<a class="frame-link" data-postId="${docId}"><img class="frame-img" src="./image/joinhere.png"></a>`;
             }
           }
 
@@ -366,7 +366,7 @@
             const imageData = postSnap.data();
 
             // 이미지가 채워져 있는지 확인
-            if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
+            if ($(this).attr("src") && $(this).attr("src").trim() !== "" && $(this).attr("src").trim() !== "./image/joinhere.png") {
               // 이미지 업로드자와 현재 사용자 비교
               const makers = Array.isArray(imageData.makers)
                 ? imageData.makers
