@@ -50,11 +50,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Feed</a>
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Feed</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" id="create-link" href="upload.html">Create</a>
-            </li>            
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="tutorial.html">Tutorial</a>
             </li>
@@ -88,7 +90,13 @@
         deleteDoc,
         getDoc,
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-      import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+      import {
+        getAuth,
+        signInWithPopup,
+        GoogleAuthProvider,
+        FacebookAuthProvider,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
       // Import the necessary Firebase functions
       import { arrayRemove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
@@ -100,17 +108,17 @@
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyC_2nHVC8RY4xDfMwVlQtp8bbDY8ks-U74",
-  authDomain: "seul-3projm-808e4.firebaseapp.com",
-  projectId: "seul-3projm-808e4",
-  storageBucket: "seul-3projm-808e4.appspot.com",
-  messagingSenderId: "23219568493",
-  appId: "1:23219568493:web:ee3360d6ed3149a946e464",
-  measurementId: "G-5FYNH0ZF4M"
-};
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyC_2nHVC8RY4xDfMwVlQtp8bbDY8ks-U74",
+        authDomain: "seul-3projm-808e4.firebaseapp.com",
+        projectId: "seul-3projm-808e4",
+        storageBucket: "seul-3projm-808e4.appspot.com",
+        messagingSenderId: "23219568493",
+        appId: "1:23219568493:web:ee3360d6ed3149a946e464",
+        measurementId: "G-5FYNH0ZF4M",
+      };
 
       // Firebase 초기화
       const app = initializeApp(firebaseConfig);
@@ -135,15 +143,14 @@ const firebaseConfig = {
           // 로그인한 사용자 정보 저장
           user = currentUser;
           // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
-          document.getElementById('create-link').href = 'upload.html';
+          document.getElementById("create-link").href = "upload.html";
         } else {
           // 로그아웃 상태
           user = null;
           // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
-          document.getElementById('create-link').href = 'login.html';
+          document.getElementById("create-link").href = "login.html";
         }
       });
-
 
       const productCollection = collection(db, "feed");
       const productQuery = query(
@@ -157,19 +164,20 @@ const firebaseConfig = {
           const docId = doc.id; // Get document id
           let joinImageUrl = [];
 
-
           // 좋아요 정보 가져오기
           let likes = Array.isArray(imageData.좋아요) ? imageData.좋아요 : [];
-    
+
           // 좋아요 기능 관련 변수 초기화 for 그냥 view 유저들
           let isLiked = false;
-          let likeIconImage = './image/heart1.png'; // Default like icon image
+          let likeIconImage = "./image/heart1.png"; // Default like icon image
 
           // 사용자가 로그인한 상태인지 확인
           if (user) {
             isLiked = likes.includes(user.uid); // 사용자가 이미 좋아요를 눌렀는지 확인
             // 좋아요 아이콘 이미지 설정
-            likeIconImage = isLiked ? './image/heart3.png' : './image/heart1.png';
+            likeIconImage = isLiked
+              ? "./image/heart3.png"
+              : "./image/heart1.png";
           }
 
           if (
@@ -226,7 +234,7 @@ const firebaseConfig = {
             </div>
           </div>
           <br>
-          `; 
+          `;
           $(".container").append(템플릿);
         });
 
@@ -235,67 +243,66 @@ const firebaseConfig = {
         // 내가 생성한 피드면 Join 못함
         // 내가 이미 Join한 피드면 Join 못함
         $(document).on("click", ".frame-link", async function () {
-            // 사용자가 로그인했는지 확인
-            if (user) {
-
-              let $makerContainer = $(this).parent();
-              let postId = $makerContainer.data("id");
-
-              const postRef = doc(db, "feed", postId);
-              const postDoc = await getDoc(postRef);
-              const feedData = postDoc.data();
-              const makers = Array.isArray(feedData.makers) ? feedData.makers : [];
-
-              // 현재 로그인한 사용자가 피드의 생성자나 이미 참여한 사용자인지 확인
-              if (!makers.includes(user.uid)) {
-                // 이미지가 채워져 있지 않으면 join.html로 이동
-                window.location.href = `join.html?postId=${postId}`;;
-              } else {
-                // 자신이 생성한 피드에는 참여할 수 없다는 메시지를 팝업으로 띄움
-                alert("You already join this feed! :)");
-              }
-            } else {
-              // 로그인하지 않았다면 login.html로 이동
-              window.location.href = 'login.html';
-            }
-          });
-
-
-        // 좋아요 기능
-        $(document).on("click", ".like-icon", async function () {
-            if (!user) {
-                // 로그인하지 않았다면 login.html로 이동
-                window.location.href = 'login.html';
-            }
-
-            let $likeContainer = $(this).parent();
-            let postId = $likeContainer.data("id");
-            let $likeCount = $likeContainer.find(".like-count");
+          // 사용자가 로그인했는지 확인
+          if (user) {
+            let $makerContainer = $(this).parent();
+            let postId = $makerContainer.data("id");
 
             const postRef = doc(db, "feed", postId);
             const postDoc = await getDoc(postRef);
-            const postData = postDoc.data();
-            const likes = postData.좋아요 || [];
+            const feedData = postDoc.data();
+            const makers = Array.isArray(feedData.makers)
+              ? feedData.makers
+              : [];
 
-            if (likes.includes(user.uid)) {
-              // 이미 좋아요를 눌렀으면 좋아요 취소
-              const newLikes = likes.filter((uid) => uid !== user.uid);
-              await updateDoc(postRef, { 좋아요: newLikes });
-
-              $(this).attr("src", "./image/heart1.png");
-              $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
+            // 현재 로그인한 사용자가 피드의 생성자나 이미 참여한 사용자인지 확인
+            if (!makers.includes(user.uid)) {
+              // 이미지가 채워져 있지 않으면 join.html로 이동
+              window.location.href = `join.html?postId=${postId}`;
             } else {
-              // 좋아요 추가
-              const newLikes = [...likes, user.uid];
-              await updateDoc(postRef, { 좋아요: newLikes });
-
-              $(this).attr("src", "./image/heart3.png");
-              $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
+              // 자신이 생성한 피드에는 참여할 수 없다는 메시지를 팝업으로 띄움
+              alert("You already join this feed! :)");
             }
-
+          } else {
+            // 로그인하지 않았다면 login.html로 이동
+            window.location.href = "login.html";
+          }
         });
 
-                // // Join한 Frame 삭제
+        // 좋아요 기능
+        $(document).on("click", ".like-icon", async function () {
+          if (!user) {
+            // 로그인하지 않았다면 login.html로 이동
+            window.location.href = "login.html";
+          }
+
+          let $likeContainer = $(this).parent();
+          let postId = $likeContainer.data("id");
+          let $likeCount = $likeContainer.find(".like-count");
+
+          const postRef = doc(db, "feed", postId);
+          const postDoc = await getDoc(postRef);
+          const postData = postDoc.data();
+          const likes = postData.좋아요 || [];
+
+          if (likes.includes(user.uid)) {
+            // 이미 좋아요를 눌렀으면 좋아요 취소
+            const newLikes = likes.filter((uid) => uid !== user.uid);
+            await updateDoc(postRef, { 좋아요: newLikes });
+
+            $(this).attr("src", "./image/heart1.png");
+            $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
+          } else {
+            // 좋아요 추가
+            const newLikes = [...likes, user.uid];
+            await updateDoc(postRef, { 좋아요: newLikes });
+
+            $(this).attr("src", "./image/heart3.png");
+            $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
+          }
+        });
+
+        // // Join한 Frame 삭제
 
         // 이미지 URL에서 파일 경로를 추출하는 함수
         function extractFilePathFromURL(imageUrl) {
@@ -350,12 +357,12 @@ const firebaseConfig = {
 
                 // makers 배열에서 해당 인덱스 값 삭제
                 const makersArray = imageData.makers;
-                makersArray.splice(joinImageIndex+1, 1);
+                makersArray.splice(joinImageIndex + 1, 1);
 
                 // 배열을 다시 Firestore 업데이트
                 await updateDoc(postRef, {
                   joinimage: joinImageArray,
-                  makers: makersArray
+                  makers: makersArray,
                 });
               }
             }
@@ -364,7 +371,6 @@ const firebaseConfig = {
           }
         }
 
-
         $(document).on("click", ".frame-img", async function () {
           let $frame = $(this).closest(".frame");
           let postId = $frame.data("id");
@@ -372,80 +378,83 @@ const firebaseConfig = {
 
           // 로그인 상태 확인
           if (!user) {
-              // 로그인하지 않았다면 login.html로 이동
-              window.location.href = 'login.html';
-              return;
+            // 로그인하지 않았다면 login.html로 이동
+            window.location.href = "login.html";
+            return;
           }
 
           const postRef = doc(db, "feed", postId);
 
           try {
-              const postSnap = await getDoc(postRef);
-              const imageData = postSnap.data();
-              
-          // 이미지가 채워져 있는지 확인
-          if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
+            const postSnap = await getDoc(postRef);
+            const imageData = postSnap.data();
+
+            // 이미지가 채워져 있는지 확인
+            if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
               // 이미지 업로드자와 현재 사용자 비교
-              const makers = Array.isArray(imageData.makers) ? imageData.makers : [];
+              const makers = Array.isArray(imageData.makers)
+                ? imageData.makers
+                : [];
               const currentMaker = makers[imageIndex];
 
               // 사진이 채워져 있는데, 유저가 다른 경우
-              if (user.uid !== currentMaker) { 
-              alert('You cannot delete this image.');
+              if (user.uid !== currentMaker) {
+                alert("You cannot delete this image.");
                 return;
-                }
-          }
-              
+              }
+            }
           } catch (error) {
-              console.error("Error reading document:", error);
+            console.error("Error reading document:", error);
           }
 
           // 이미지가 클릭되지 않은 경우 아무 동작도 하지 않음
           if (typeof imageIndex === "undefined") {
-              return;
+            return;
           }
 
           // 이미지가 채워져 있는지 확인
           if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
-              // 첫 번째 이미지인 경우 삭제 불가
-              if (imageIndex === 0) {
-                  // 이미지가 첫 번째인 경우 아무 동작도 하지 않음
-                  return;
-              }
+            // 첫 번째 이미지인 경우 삭제 불가
+            if (imageIndex === 0) {
+              // 이미지가 첫 번째인 경우 아무 동작도 하지 않음
+              return;
+            }
 
-              // 이미지 삭제 확인
-              if (confirm("Are you sure delete your image? \nThe order of the current images might be affected!")) {
-                  // 이미지 삭제
-                  await removeJoinImage(postId, imageIndex - 1);
+            // 이미지 삭제 확인
+            if (
+              confirm(
+                "Are you sure delete your image? \nThe order of the current images might be affected!"
+              )
+            ) {
+              // 이미지 삭제
+              await removeJoinImage(postId, imageIndex - 1);
 
-                  // 프레임에서 이미지 삭제 후 빈 프레임 이미지로 교체
-                  $(this).replaceWith(
-                      `<a href="join.html?postId=${postId}"><img class="frame-img"></a>`
-                  );
-              }
+              // 프레임에서 이미지 삭제 후 빈 프레임 이미지로 교체
+              $(this).replaceWith(
+                `<a href="join.html?postId=${postId}"><img class="frame-img"></a>`
+              );
+            }
           } else {
-              // 이미지가 채워져 있지 않으면 join.html로 이동
-              window.location.href = `join.html?postId=${postId}`;
+            // 이미지가 채워져 있지 않으면 join.html로 이동
+            window.location.href = `join.html?postId=${postId}`;
           }
-      });
+        });
 
+        //   // Save frame as an image
+        //   $(document).on("click", ".save-option", function (e) {
+        //     e.preventDefault();
 
-      //   // Save frame as an image
-      //   $(document).on("click", ".save-option", function (e) {
-      //     e.preventDefault();
+        //     const frameElement = $(this).closest(".box").find(".frame")[0];
 
-      //     const frameElement = $(this).closest(".box").find(".frame")[0];
-
-      //     html2canvas(frameElement, { useCORS: true }).then(function (canvas) {
-      //       let el = document.createElement("a");
-      //       el.href = canvas.toDataURL("image/jpeg");
-      //       el.download = "frame.jpg"; // 파일명 설정
-      //       document.body.appendChild(el);
-      //       el.click();
-      //       document.body.removeChild(el);
-      //     });
-      //   });
-      
+        //     html2canvas(frameElement, { useCORS: true }).then(function (canvas) {
+        //       let el = document.createElement("a");
+        //       el.href = canvas.toDataURL("image/jpeg");
+        //       el.download = "frame.jpg"; // 파일명 설정
+        //       document.body.appendChild(el);
+        //       el.click();
+        //       document.body.removeChild(el);
+        //     });
+        //   });
       });
     </script>
   </body>
