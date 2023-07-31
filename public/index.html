@@ -40,6 +40,13 @@
       <a href="tutorial.html">Tutorial</a>
     </div>
 
+   <!-- 커피 이벤트 <fixed button> -->
+    <div id="mybutton">
+      <button class="coffee-event" onclick="window.location.href='https://forms.gle/pv3erLw5ZnwLR7b38';">
+        Coffee Event☕️
+      </button>
+    </div>
+
     <!-- 피드 레이아웃 -->
     <div class="container mt-3"></div>
 
@@ -180,7 +187,7 @@
             } else {
               imageTemplates[
                 i + 1
-              ] = `<a class="frame-link" data-postId="${docId}"><img class="frame-img" src="./image/joinhere.png"></a>`;
+              ] = `<a class="frame-link" data-postId="${docId}"><img class="frame-img"></a>`;
             }
           }
 
@@ -365,8 +372,8 @@
             const postSnap = await getDoc(postRef);
             const imageData = postSnap.data();
 
-            // 이미지가 채워져 있는지 확인
-            if ($(this).attr("src") && $(this).attr("src").trim() !== "" && $(this).attr("src").trim() !== "./image/joinhere.png") {
+             // 이미지가 채워져 있는지 확인
+             if ($(this).attr("src") && $(this).attr("src").trim() !== "" && $(this).attr("src").trim() !== "./image/joinhere.png") {
               // 이미지 업로드자와 현재 사용자 비교
               const makers = Array.isArray(imageData.makers)
                 ? imageData.makers
