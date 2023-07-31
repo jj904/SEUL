@@ -17,38 +17,25 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   
 
-<!-- navbar -->
-<nav class="navbar navbar-expand-lg" style="background-color: #FDD835;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Seul.</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Feed</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="upload.html">Create</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tutorial.html">Tutorial</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- 피드 레이아웃 -->
-<div class="container">
-    <form action="https://formsubmit.co/76068323753773496d8a2ed829d8faca" method="POST">"
+    <!-- 상단 Bar -->
+    <div class="link-bar">
+        <a style="font-weight: bold;" href="index.html">Seul.</a>
+        <a href="index.html">Feed</a>
+        <a id="create-link" href="upload.html">Create</a>
+        <a href="tutorial.html">Tutorial</a>
+      </div>
+<br>
+<!-- Contact Us 레이아웃 -->
+<div class="contact_us">
+    <form action="https://formsubmit.co/76068323753773496d8a2ed829d8faca" method="POST">
         <h3>Get In Touch</h3>
-        <input type="text" name="Name" placeholder="Your Name" require> <br>
-        <input type="email" name="Email" placeholder="Your Email" require> <br>
-        <textarea name="Message" rows="4" placeholder="How can we halp you?" required></textarea>
+        <input type="text" name="Name" placeholder="Your Name" required> <br>
+        <input type="email" name="Email" placeholder="Your Email" required> <br>
+        <textarea name="Message" rows="4" placeholder="How can we help you?" required></textarea>
         <button type="submit">Send</button>
    </form> 
 </div>
+
+
 </body>
 </html>
