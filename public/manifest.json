@@ -1,0 +1,74 @@
+{
+    "background_color": "#fdd835",
+    "description": "Your unique and vivid memory all in your hand",
+    "dir": "ltr",
+    "display": "standalone",
+    "display_override": ["fullscreen", "standalone"],
+    "name": "Seul.",
+    "id": "https://seul-3projm-808e4.web.app/" ,
+    "orientation": "portrait",
+    "scope": "/",
+    "short_name": "Seul.",
+    "start_url": "./index.html",
+    "theme_color": "#fdd835",
+    "categories": [
+      "social",
+      "travel",
+      "lifestyle"
+    ],
+    "screenshots": [],
+    "edge_side_panel": {
+        "preferred_width": 400
+    },
+    "handle_links": "auto",
+    "icons": [
+      {
+        "src": "./AppImages/android/android-launchericon-192-192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "./AppImages/android/android-launchericon-512-512.png",
+        "sizes": "512-512",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "./AppImages/android/android-launchericon-1024-1024.png",
+        "sizes": "1024-1024",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "./AppImages/ios/192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "./AppImages/ios/512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "./AppImages/ios/1024.png",
+        "sizes": "1024-1024",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "./AppImages/windows11/LargeTile.scale-100.png",
+        "sizes": "your icon size here",
+        "type": "image/png"
+      }
+    ],
+    "shortcuts": [
+      {
+        "name": "Seul.",
+        "url": "https://seul-3projm-808e4.web.app/",
+        "description": "Seul. Demo"
+      }
+    ]
+  }
