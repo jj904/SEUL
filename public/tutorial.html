@@ -31,7 +31,7 @@
 
     <div class="tutorial-section">
         <div class="tutorial-header">1. How to Create?</div>
-        <div class="tutorial-content">You can Create Photo Frame!<br><a class="tutorial-link" id="create-link-2" href="upload.html">Go to Create!</a></div>
+        <div class="tutorial-content">You can Create Photo Frame!<br><a class="tutorial-link" href="upload.html">Go to Create!</a></div>
     </div>
 
     <div class="tutorial-section">
@@ -138,13 +138,13 @@
       user = currentUser;
       // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
       document.getElementById("create-link-1").href = "upload.html";
-      document.getElementById("create-link-2").href = "upload.html";
+      document.getElementById("tutorial-link").href = "upload.html";
     } else {
       // 로그아웃 상태
       user = null;
       // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
       document.getElementById("create-link-1").href = "login.html";
-      document.getElementById("create-link-2").href = "login.html";
+      document.getElementById("tutorial-link").href = "login.html";
     }
   });
 </script>
