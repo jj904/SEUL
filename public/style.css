@@ -1,10 +1,19 @@
 /* Bar */
 .link-bar {
+  position: fixed;
+  top: 0; 
+  width: 100%; 
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #fdd835;
   padding: 1em;
+  z-index: 999; 
+}
+
+/* 다른 내용이 link-bar에 의해 가려지지 않도록 margin을 추가 */
+body {
+  margin-top: 85px;
 }
 
 .link-left, .link-right {
