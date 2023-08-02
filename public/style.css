@@ -1,13 +1,32 @@
 /* Bar */
 .link-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fdd835;
   padding: 1em;
+}
+
+.link-left, .link-right {
+  display: inline-block;
 }
 
 .link-bar a {
   margin-right: 1em;
   color: white;
   text-decoration: none;
+}
+
+.logout-btn {
+  display: inline-block;
+  background: #F1F9FB;
+  border-radius: 20px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 14px;
+  color: #4169E1;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
 }
 
 
@@ -174,17 +193,7 @@ align-items: left;
   right: 5px;
 }
 
-.logout-btn {
-  display: inline-block;
-  background: #F1F9FB;
-  border-radius: 20px;
-  border: 2px solid white;
-  text-align: center;
-  font-size: 14px;
-  color: #4169E1;
-  font-family: "Roboto", sans-serif;
-  cursor: pointer;
-}
+
 
 
 /************

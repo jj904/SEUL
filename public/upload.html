@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seul.</title>
+    <title>Document</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
     <!-- bootstrap - css-->
@@ -31,14 +31,13 @@
 
     <!-- 상단 Bar -->
     <div class="link-bar">
-      <a href="index.html"
-        ><img
-          src="./image/seulmainlogo.png"
-          alt="Seul."
-          width="100"
-          height="50"
-      /></a>
-      <a href="tutorial.html">Tutorial</a>
+      <div class="link-left">
+        <a href="index.html"><img src="./image/seulmainlogo.png" alt="Seul." width="100" height="50"></a>
+        <a href="tutorial.html">Tutorial</a>
+      </div>
+      <div class="link-right">
+        <button id="gogleLogout" class="logout-btn">Logout</button>
+      </div>
     </div>
 
     <div class="container mt-3">
@@ -47,14 +46,14 @@
         type="text"
         class="form-control mt-2"
         id="content"
-        placeholder="Enter the Topic your Conents"
+        placeholder="content"
       />
       <input class="form-control mt-2" type="file" id="image" />
       <br />
-
       <h3>Preview</h3>
       <h3 class="recommendation">
         We recommend using Auto rotate for horizontal pictures!
+        Thank you for your patience, It takes some time to be uploaded. 
       </h3>
       <!-- 미리보기를 위한 div 추가 -->
       <div class="box">
@@ -142,8 +141,8 @@
                 class="recommendation"
                 style="font-size: 1rem; text-align: center; color: #fdd835"
               >
-                <br />“Create” survey is only required once!<br />Thank you for
-                your response!
+                <br />"Create" survey is only required once!<br />
+                Thank you for your response!
               </h3>
             </form>
           </div>
