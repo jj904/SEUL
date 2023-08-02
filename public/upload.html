@@ -31,7 +31,7 @@
 
     <!-- 상단 Bar -->
     <div class="link-bar">
-      <a style="font-weight: bold;" href="index.html">Seul.</a>
+      <a style="font-weight: bold" href="index.html">Seul.</a>
       <a href="tutorial.html">Tutorial</a>
     </div>
 
@@ -44,9 +44,11 @@
         placeholder="content"
       />
       <input class="form-control mt-2" type="file" id="image" />
-      <br>
+      <br />
       <h3>Preview</h3>
-      <h3 class="recommendation">We recommend using Auto rotate for horizontal pictures!</h3>
+      <h3 class="recommendation">
+        We recommend using Auto rotate for horizontal pictures!
+      </h3>
       <!-- 미리보기를 위한 div 추가 -->
       <div class="box">
         <div class="frame">
@@ -57,9 +59,70 @@
           <h4 class="seul">Seul.</h4>
         </div>
       </div>
-        <button class="btn btn-danger mt-3" id="send">Create</button>
-        <br>
-        <br>
+      <button class="btn btn-danger mt-3" id="send">Create</button>
+      <br />
+      <br />
+    </div>
+
+    <!-- 설문조사 -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="surveyModal"
+      tabindex="-1"
+      aria-labelledby="surveyModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="surveyModalLabel">Survey</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="surveyForm">
+              <div class="form-group">
+                <label for="question1">Question 1</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="question1"
+                  placeholder="Your answer"
+                />
+              </div>
+              <div class="form-group">
+                <label for="question2">Question 2</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="question2"
+                  placeholder="Your answer"
+                />
+              </div>
+              <h3 class="recommendation">Create에서 한 번 제출하면 이 survey는 더 이상 뜨지 않습니다.</h3>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="doneButton">
+              Done
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- firebase sdk -->
@@ -67,6 +130,9 @@
       // SDK에서 필요한 함수들을 import
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
       import {
+        doc,
+        getDoc,
+        setDoc,
         getFirestore,
         addDoc,
         collection,
@@ -90,17 +156,17 @@
         onAuthStateChanged,
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyC_2nHVC8RY4xDfMwVlQtp8bbDY8ks-U74",
-  authDomain: "seul-3projm-808e4.firebaseapp.com",
-  projectId: "seul-3projm-808e4",
-  storageBucket: "seul-3projm-808e4.appspot.com",
-  messagingSenderId: "23219568493",
-  appId: "1:23219568493:web:ee3360d6ed3149a946e464",
-  measurementId: "G-5FYNH0ZF4M"
-};
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyC_2nHVC8RY4xDfMwVlQtp8bbDY8ks-U74",
+        authDomain: "seul-3projm-808e4.firebaseapp.com",
+        projectId: "seul-3projm-808e4",
+        storageBucket: "seul-3projm-808e4.appspot.com",
+        messagingSenderId: "23219568493",
+        appId: "1:23219568493:web:ee3360d6ed3149a946e464",
+        measurementId: "G-5FYNH0ZF4M",
+      };
       // Firebase 초기화
       const app = initializeApp(firebaseConfig);
 
@@ -173,12 +239,48 @@ const firebaseConfig = {
             try {
               // Firestore에 데이터 추가
               await addDoc(collection(db, "feed"), 저장할거);
-              window.location.href = "/index.html";
+
+              // Check if the user has already created a survey
+              const createSurveyDocRef = doc(db, "createSurvey", userUid);
+              const createSurveyDocSnap = await getDoc(createSurveyDocRef);
+
+              if (!createSurveyDocSnap.exists()) {
+                // If the user has not created a survey, show the survey modal
+                $("#surveyModal").modal("show");
+              } else {
+                // If the user has already created a survey, redirect to index.html
+                window.location.href = "/index.html";
+              }
             } catch (e) {
               console.error("Error: ", e);
             }
           }
         );
+      });
+
+      // 설문조사 완료 버튼
+      $("#doneButton").click(async function () {
+        // Get the user's answers
+        const answer1 = $("#question1").val();
+        const answer2 = $("#question2").val();
+        // Add more answers as needed
+
+        // Create an object to hold the survey data
+        const surveyData = {
+          question_1: answer1,
+          question_2: answer2,
+          // Add more fields as needed
+        };
+
+        try {
+          // Add the survey data to Firestore under the user's uid
+          await setDoc(doc(db, "createSurvey", userUid), surveyData);
+          // Close the modal and redirect to index.html
+          $("#surveyModal").modal("hide");
+          window.location.href = "/index.html";
+        } catch (e) {
+          console.error("Error: ", e);
+        }
       });
     </script>
   </body>
