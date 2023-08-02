@@ -165,48 +165,34 @@ align-items: left;
   font-weight: bold;
   border-radius: 20px;
   border-color: #E7E7E7;
-  font-size:8;
+  font-size:11px;
 }
 
 #bugbutton {
   position: fixed;
   bottom: 10px;
-  right: 10px;
+  right: 5px;
+}
+
+.logout-btn {
+  display: inline-block;
+  background: #F1F9FB;
+  border-radius: 20px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 14px;
+  color: #4169E1;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
 }
 
 
 /************
 *upload.html*
 *************/
-/* .create-info{ 
-  box-sizing: border-box;
-  padding-top: 150px;
-  width: 50%;
-  float: left;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;  
-  justify-content: center;
-}
-.create-info input{
-    height: 60px;
-    margin-bottom: 40px;
-    border-radius: 30px;
-    background-color: #E7E7E7;
-    font-size: 20px;
-    text-indent:2em;
-}
-
-.create-info button{
-  width: 100px;
-  height: 50px;
-  border-radius: 20px;
-  font-size: 22px;
-} */
-
 h3 {
   color: #0A0A0A;
-  font-size: 1.20rem;
+  font-size: 1.00rem;
   font-weight: 500;
   margin: 0.5em 0;
 }

@@ -40,6 +40,7 @@
       <a href="index.html"><img src="./image/seulmainlogo.png" alt="Seul." width="100" height="50"></a>
       <a href="tutorial.html">Tutorial</a>
       <a id="create-link" href="upload.html">Create</a>
+      <button id="gogleLogout" class="logout-btn">Logout</button>
     </div>
 
    <!-- 커피 이벤트 <fixed button> -->
@@ -84,6 +85,7 @@
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
       import {
         getAuth,
+        signOut,
         signInWithPopup,
         GoogleAuthProvider,
         FacebookAuthProvider,
@@ -129,16 +131,40 @@
 
       // 좋아요 기능을 위한 사용자 초기화
       let user = null;
+      
+      // Google Logout
+      document.getElementById("gogleLogout").addEventListener("click", () => {
+        if (user) {  
+          signOut(auth).then(() => {
+            alert("User logged out successfully!)");
+            // 로그인 성공 후 index.html로 리다이렉트
+            window.location.href = "index.html";
+          }).catch((error) => {
+            // An error happened.
+            console.error("Error logging out:", error);
+          });
+        }else{
+          alert("Already logged out");
+        }
+      });
 
       onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {
           // 로그인한 사용자 정보 저장
           user = currentUser;
+
+          // Show "Sign out with Google" button and hide "Login" button
+          document.getElementById("gogleLogout").style.display = "block";
           // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
           document.getElementById("create-link").href = "upload.html";
-        } else {
+        } 
+        
+        else {
           // 로그아웃 상태
           user = null;
+         
+          // Show "Login" button and hide "Sign out with Google" button
+          document.getElementById("gogleLogout").style.display = "none";
           // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
           document.getElementById("create-link").href = "login.html";
         }
