@@ -31,7 +31,7 @@
 
     <!-- 상단 Bar -->
     <div class="link-bar">
-      <a style="font-weight: bold" href="index.html">Seul.</a>
+      <a href="index.html"><img src="./image/seulmainlogo.png" alt="Seul." width="100" height="50"></a>
       <a href="tutorial.html">Tutorial</a>
     </div>
 
@@ -64,66 +64,44 @@
       <br />
     </div>
 
-    <!-- 설문조사 -->
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="surveyModal"
-      tabindex="-1"
-      aria-labelledby="surveyModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="surveyModalLabel">Survey</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+<!-- Modal -->
+<div class="modal fade" id="surveyModal" tabindex="-1" aria-labelledby="surveyModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #f8f9fa;">
+        <h5 class="modal-title" id="surveyModalLabel" style="font-weight: bold; color: #212529;">Create Survey</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background-color: #f8f9fa;">
+        <form id="surveyForm">
+          <div class="form-group">
+            <label for="question1" style="font-weight: bold; color: #212529;">Why did you participate in Seul. demo version?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="option1" value="Because it seemed like it was fun">
+              <label class="form-check-label" for="option1">Because it seemed like it was fun</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="option2" value="Co-creating photos with people (social, challenge)">
+              <label class="form-check-label" for="option2">Co-creating photos with people (social, challenge)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="option3" value="Because a friend wanted to / recommended it">
+              <label class="form-check-label" for="option3">Because a friend wanted to / recommended it</label>
+            </div>
           </div>
-          <div class="modal-body">
-            <form id="surveyForm">
-              <div class="form-group">
-                <label for="question1">Question 1</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="question1"
-                  placeholder="Your answer"
-                />
-              </div>
-              <div class="form-group">
-                <label for="question2">Question 2</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="question2"
-                  placeholder="Your answer"
-                />
-              </div>
-              <h3 class="recommendation">Create에서 한 번 제출하면 이 survey는 더 이상 뜨지 않습니다.</h3>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary" id="doneButton">
-              Done
-            </button>
-          </div>
-        </div>
+          <h3 class="recommendation" style="font-size: 1rem; text-align: center; color: #6c757d;">
+            <br>“Create” survey is only required once!<br>Thank you for your response!
+          </h3>
+        </form>
+      </div>
+      <div class="modal-footer" style="background-color: #f8f9fa;">
+        <button type="button" class="btn btn-primary" id="doneButton">Done</button>
       </div>
     </div>
+  </div>
+</div>
 
     <!-- firebase sdk -->
     <script type="module">
@@ -258,17 +236,16 @@
         );
       });
 
-      // 설문조사 완료 버튼
       $("#doneButton").click(async function () {
         // Get the user's answers
-        const answer1 = $("#question1").val();
-        const answer2 = $("#question2").val();
-        // Add more answers as needed
+        const answer1 = [];
+        $("input[type=checkbox]:checked").each(function () {
+          answer1.push($(this).val());
+        });
 
         // Create an object to hold the survey data
         const surveyData = {
           question_1: answer1,
-          question_2: answer2,
           // Add more fields as needed
         };
 
