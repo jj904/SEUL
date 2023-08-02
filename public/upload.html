@@ -31,7 +31,13 @@
 
     <!-- 상단 Bar -->
     <div class="link-bar">
-      <a href="index.html"><img src="./image/seulmainlogo.png" alt="Seul." width="100" height="50"></a>
+      <a href="index.html"
+        ><img
+          src="./image/seulmainlogo.png"
+          alt="Seul."
+          width="100"
+          height="50"
+      /></a>
       <a href="tutorial.html">Tutorial</a>
     </div>
 
@@ -64,44 +70,90 @@
       <br />
     </div>
 
-<!-- Modal -->
-<div class="modal fade" id="surveyModal" tabindex="-1" aria-labelledby="surveyModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #f8f9fa;">
-        <h5 class="modal-title" id="surveyModalLabel" style="font-weight: bold; color: #212529;">Create Survey</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="background-color: #f8f9fa;">
-        <form id="surveyForm">
-          <div class="form-group">
-            <label for="question1" style="font-weight: bold; color: #212529;">Why did you participate in Seul. demo version?</label>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="option1" value="Because it seemed like it was fun">
-              <label class="form-check-label" for="option1">Because it seemed like it was fun</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="option2" value="Co-creating photos with people (social, challenge)">
-              <label class="form-check-label" for="option2">Co-creating photos with people (social, challenge)</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="option3" value="Because a friend wanted to / recommended it">
-              <label class="form-check-label" for="option3">Because a friend wanted to / recommended it</label>
-            </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="surveyModal"
+      tabindex="-1"
+      aria-labelledby="surveyModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #f8f9fa">
+            <h5
+              class="modal-title"
+              id="surveyModalLabel"
+              style="font-weight: bold; color: #fdd835"
+            >
+              Create Survey
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <h3 class="recommendation" style="font-size: 1rem; text-align: center; color: #6c757d;">
-            <br>“Create” survey is only required once!<br>Thank you for your response!
-          </h3>
-        </form>
-      </div>
-      <div class="modal-footer" style="background-color: #f8f9fa;">
-        <button type="button" class="btn btn-primary" id="doneButton">Done</button>
+          <div class="modal-body" style="background-color: #f8f9fa">
+            <form id="surveyForm">
+              <div class="form-group">
+                <label for="question1" style="font-weight: bold; color: #212529"
+                  >Why did you participate in Seul. demo version?</label
+                >
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="option1"
+                    value="Because it seemed like it was fun"
+                  />
+                  <label class="form-check-label" for="option1"
+                    >Because it seemed like it was fun</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="option2"
+                    value="Co-creating photos with people (social, challenge)"
+                  />
+                  <label class="form-check-label" for="option2"
+                    >Co-creating photos with people (social, challenge)</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="option3"
+                    value="Because a friend wanted to / recommended it"
+                  />
+                  <label class="form-check-label" for="option3"
+                    >Because a friend wanted to / recommended it</label
+                  >
+                </div>
+              </div>
+              <h3
+                class="recommendation"
+                style="font-size: 1rem; text-align: center; color: #fdd835"
+              >
+                <br />“Create” survey is only required once!<br />Thank you for
+                your response!
+              </h3>
+            </form>
+          </div>
+          <div class="modal-footer" style="background-color: #f8f9fa">
+            <button type="button" class="btn custom-btn" id="doneButton">
+              Done
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
     <!-- firebase sdk -->
     <script type="module">
@@ -242,6 +294,12 @@
         $("input[type=checkbox]:checked").each(function () {
           answer1.push($(this).val());
         });
+
+        // Check if at least one checkbox is checked
+        if (answer1.length == 0) {
+          alert("Please select at least one option.");
+          return;
+        }
 
         // Create an object to hold the survey data
         const surveyData = {
