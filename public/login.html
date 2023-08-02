@@ -38,9 +38,6 @@
         <a href="tutorial.html">Tutorial</a>
         <a id="create-link" href="upload.html">Create</a>
       </div>
-      <div class="link-right">
-        <button id="gogleLogout" class="logout-btn">Logout</button>
-      </div>
     </div>
     
     <!-- 로그인 레이아웃 -->
@@ -141,6 +138,23 @@
             const credential = GoogleAuthProvider.credentialFromError(error);
           });
       });
+
+  // Authentication 서비스 초기화
+  let user = null;
+
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      // 로그인한 사용자 정보 저장
+      user = currentUser;
+      // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
+      document.getElementById("create-link").href = "upload.html";
+    } else {
+      // 로그아웃 상태
+      user = null;
+      // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
+      document.getElementById("create-link").href = "login.html";
+    }
+  });
 
       // document.getElementById('facebookLogin').addEventListener
       // ('click', () => {

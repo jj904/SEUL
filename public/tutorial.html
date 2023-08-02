@@ -23,7 +23,7 @@
       <div class="link-left">
         <a href="index.html"><img src="./image/seulmainlogo.png" alt="Seul." width="100" height="50"></a>
         <a href="tutorial.html">Tutorial</a>
-        <a id="create-link" href="upload.html">Create</a>
+        <a id="create-link-1" href="upload.html">Create</a>
       </div>
       <div class="link-right">
         <button id="gogleLogout" class="logout-btn">Logout</button>
@@ -36,7 +36,7 @@
 
     <div class="tutorial-section">
         <div class="tutorial-header">1. How to Create?</div>
-        <div class="tutorial-content">You can Create Photo Frame!<br><a class="tutorial-link" href="upload.html">Go to Create!</a></div>
+        <div class="tutorial-content">You can Create Photo Frame!<br><a id="create-link-2" class="tutorial-link" href="upload.html">Go to Create!</a></div>
     </div>
 
     <div class="tutorial-section">
@@ -137,22 +137,23 @@
   const auth = getAuth();
   let user = null;
 
-
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
       // 로그인한 사용자 정보 저장
       user = currentUser;
       // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
       document.getElementById("create-link-1").href = "upload.html";
-      document.getElementById("tutorial-link").href = "upload.html";
+      document.getElementById("create-link-2").href = "upload.html";
     } else {
       // 로그아웃 상태
       user = null;
       // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
       document.getElementById("create-link-1").href = "login.html";
-      document.getElementById("tutorial-link").href = "login.html";
+      document.getElementById("create-link-2").href = "login.html";
     }
   });
+
+
 </script>
 </body>
 </html>
