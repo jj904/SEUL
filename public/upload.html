@@ -234,89 +234,97 @@
         reader.readAsDataURL(this.files[0]); // 선택된 파일을 데이터 URL로 읽기
       });
 
+      var shouldAddAfterSurvey = false;
+      var 저장할거;
+
       $("#send").click(async function () {
-        // 선택한 파일 찾기
-        var file = document.querySelector("#image").files[0];
-        // 저장할 경로 설정
-        var storageRef = ref(storage, "image/" + file.name);
-        // 파일 업로드
-        var uploadTask = uploadBytesResumable(storageRef, file);
+  // 선택한 파일 찾기
+  var file = document.querySelector("#image").files[0];
+  // 저장할 경로 설정
+  var storageRef = ref(storage, "image/" + file.name);
+  // 파일 업로드
+  var uploadTask = uploadBytesResumable(storageRef, file);
 
-        uploadTask.on(
-          "state_changed",
-          null,
-          //에러 발생시 동작하는 함수
-          (error) => {
-            console.error("업로드 실패사유:", error);
-          },
-          //업로드 성공시 동작하는 함수
-          async () => {
-            // 업로드된 이미지의 URL을 가져옵니다.
-            const url = await getDownloadURL(uploadTask.snapshot.ref);
+  uploadTask.on(
+    "state_changed",
+    null,
+    //에러 발생시 동작하는 함수
+    (error) => {
+      console.error("업로드 실패사유:", error);
+    },
+    //업로드 성공시 동작하는 함수
+    async () => {
+      // 업로드된 이미지의 URL을 가져옵니다.
+      const url = await getDownloadURL(uploadTask.snapshot.ref);
 
-            console.log("업로드된 경로:", url);
+      // Firestore에 저장할 데이터
+      var 저장할거 = {
+        제목: userEmail, // 사용자의 이메일 앞 부분을 제목으로 설정
+        이미지: [url, "", "", ""],
+        내용: $("#content").val(),
+        좋아요: [], // 좋아요 필드를 빈 배열로 초기화
+        createdAt: new Date(),
+        makers: [userUid], // 사용자의 uid를 makers 배열에 추가
+      };
 
-            // Firestore에 저장할 데이터
-            var 저장할거 = {
-              제목: userEmail, // 사용자의 이메일 앞 부분을 제목으로 설정
-              이미지: [url, "", "", ""],
-              내용: $("#content").val(),
-              좋아요: [], // 좋아요 필드를 빈 배열로 초기화
-              createdAt: new Date(),
-              makers: [userUid], // 사용자의 uid를 makers 배열에 추가
-            };
+      // Check if the user has already created a survey
+      const createSurveyDocRef = doc(db, "createSurvey", userUid);
+      const createSurveyDocSnap = await getDoc(createSurveyDocRef);
 
-            try {
-              // Firestore에 데이터 추가
-              await addDoc(collection(db, "feed"), 저장할거);
-
-              // Check if the user has already created a survey
-              const createSurveyDocRef = doc(db, "createSurvey", userUid);
-              const createSurveyDocSnap = await getDoc(createSurveyDocRef);
-
-              if (!createSurveyDocSnap.exists()) {
-                // If the user has not created a survey, show the survey modal
-                $("#surveyModal").modal("show");
-              } else {
-                // If the user has already created a survey, redirect to index.html
-                window.location.href = "/index.html";
-              }
-            } catch (e) {
-              console.error("Error: ", e);
-            }
-          }
-        );
-      });
-
-      $("#doneButton").click(async function () {
-        // Get the user's answers
-        const answer1 = [];
-        $("input[type=checkbox]:checked").each(function () {
-          answer1.push($(this).val());
-        });
-
-        // Check if at least one checkbox is checked
-        if (answer1.length == 0) {
-          alert("Please select at least one option.");
-          return;
-        }
-
-        // Create an object to hold the survey data
-        const surveyData = {
-          question_1: answer1,
-          // Add more fields as needed
-        };
-
+      if (!createSurveyDocSnap.exists()) {
+        // If the user has not created a survey, show the survey modal
+        $("#surveyModal").modal("show");
+        shouldAddAfterSurvey = true;
+      } else {
+        // If the user has already created a survey, add data to Firestore and redirect to index.html
         try {
-          // Add the survey data to Firestore under the user's uid
-          await setDoc(doc(db, "createSurvey", userUid), surveyData);
-          // Close the modal and redirect to index.html
-          $("#surveyModal").modal("hide");
+          await addDoc(collection(db, "feed"), 저장할거);
           window.location.href = "/index.html";
         } catch (e) {
           console.error("Error: ", e);
         }
-      });
+      }
+    }
+  );
+});
+
+// "Done" button event listener
+$("#doneButton").click(async function () {
+  if (shouldAddAfterSurvey) {
+    // Get the user's answers
+    const answer1 = [];
+    $("input[type=checkbox]:checked").each(function () {
+      answer1.push($(this).val());
+    });
+
+    // Check if at least one checkbox is checked
+    if (answer1.length == 0) {
+      alert("Please select at least one option.");
+      return;
+    }
+
+    // Create an object to hold the survey data
+    const surveyData = {
+      question_1: answer1,
+      // Add more fields as needed
+    };
+
+    try {
+      // Add the survey data to Firestore under the user's uid
+      await setDoc(doc(db, "createSurvey", userUid), surveyData);
+
+      // Add the image data to Firestore
+      await addDoc(collection(db, "feed"), 저장할거);
+
+      // Close the modal and redirect to index.html
+      $("#surveyModal").modal("hide");
+      window.location.href = "/index.html";
+    } catch (e) {
+      console.error("Error: ", e);
+    }
+  }
+});
+
     </script>
   </body>
 </html>

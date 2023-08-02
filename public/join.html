@@ -217,91 +217,108 @@
         reader.readAsDataURL(this.files[0]); // 선택된 파일을 데이터 URL로 읽기
       });
 
-      $("#send").click(async function () {
-        // 선택한 파일 찾기
-        var file = document.querySelector("#image").files[0];
-        // 저장할 경로 설정
-        var storageRef = ref(storage, "image/" + file.name);
-        // 파일 업로드
-        var uploadTask = uploadBytesResumable(storageRef, file);
+      var shouldUpdateAfterSurvey = false; // Flag variable
+var updatedData;  // Declare this in global scope
 
-        uploadTask.on(
-          "state_changed",
-          null,
-          //에러 발생시 동작하는 함수
-          (error) => {
-            console.error("업로드 실패사유:", error);
-          },
-          //업로드 성공시 동작하는 함수
-          async () => {
-            // 업로드된 이미지의 URL을 가져옵니다.
-            const url = await getDownloadURL(uploadTask.snapshot.ref);
+$("#send").click(async function () {
+  // 선택한 파일 찾기
+  var file = document.querySelector("#image").files[0];
+  // 저장할 경로 설정
+  var storageRef = ref(storage, "image/" + file.name);
+  // 파일 업로드
+  var uploadTask = uploadBytesResumable(storageRef, file);
 
-            // url 쿼리에서 게시물 id를 가져옵니다.
-            const urlParams = new URLSearchParams(window.location.search);
-            const postId = urlParams.get("postId");
+  uploadTask.on(
+    "state_changed",
+    null,
+    //에러 발생시 동작하는 함수
+    (error) => {
+      console.error("업로드 실패사유:", error);
+    },
+    //업로드 성공시 동작하는 함수
+    async () => {
+      // 업로드된 이미지의 URL을 가져옵니다.
+      const url = await getDownloadURL(uploadTask.snapshot.ref);
 
-            const postRef = doc(db, "feed", postId);
+      // url 쿼리에서 게시물 id를 가져옵니다.
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get("postId");
 
-            try {
-              const postRef = doc(db, "feed", postId);
-              // get the current document
-              const postDoc = await getDoc(postRef);
-              const currentData = postDoc.data();
+      const postRef = doc(db, "feed", postId);
 
-              await updateDoc(postRef, {
-                joinimage: arrayUnion(url),
-                makers: arrayUnion(userUid), // 업데이트된 makers 배열을 Firestore에 저장합니다.
-              });
+      try {
+        // get the current document
+        const postDoc = await getDoc(postRef);
+        const currentData = postDoc.data();
 
-              // Check if the user has already joined a survey
-              const joinSurveyDocRef = doc(db, "joinSurvey", userUid);
-              const joinSurveyDocSnap = await getDoc(joinSurveyDocRef);
-
-              if (!joinSurveyDocSnap.exists()) {
-                // If the user has not joined a survey, show the survey modal
-                $("#surveyModal").modal("show");
-              } else {
-                // If the user has already joined a survey, redirect to index.html
-                window.location.href = "/index.html";
-              }
-            } catch (e) {
-              console.error("Error: ", e);
-            }
-          }
-        );
-      });
-
-      // 설문조사 완료 버튼
-      $("#doneButton").click(async function () {
-        // Get the user's answers
-        const answer1 = [];
-        $("input[type=checkbox]:checked").each(function () {
-          answer1.push($(this).val());
-        });
-
-        // Check if at least one checkbox is checked
-        if (answer1.length == 0) {
-          alert("Please select at least one option.");
-          return;
-        }
-
-        // Create an object to hold the survey data
-        const surveyData = {
-          question_1: answer1,
-          // Add more fields as needed
+        // Update data
+        updatedData = {
+          joinimage: arrayUnion(url),
+          makers: arrayUnion(userUid),
         };
 
-        try {
-          // Add the survey data to Firestore under the user's uid
-          await setDoc(doc(db, "joinSurvey", userUid), surveyData);
-          // Close the modal and redirect to index.html
-          $("#surveyModal").modal("hide");
+        // Check if the user has already joined a survey
+        const joinSurveyDocRef = doc(db, "joinSurvey", userUid);
+        const joinSurveyDocSnap = await getDoc(joinSurveyDocRef);
+
+        if (!joinSurveyDocSnap.exists()) {
+          // If the user has not joined a survey, show the survey modal
+          $("#surveyModal").modal("show");
+          shouldUpdateAfterSurvey = true;
+        } else {
+          // If the user has already joined a survey, update the doc and redirect to index.html
+          await updateDoc(postRef, updatedData);
           window.location.href = "/index.html";
-        } catch (e) {
-          console.error("Error: ", e);
         }
-      });
+      } catch (e) {
+        console.error("Error: ", e);
+      }
+    }
+  );
+});
+
+// 설문조사 완료 버튼
+$("#doneButton").click(async function () {
+  if (shouldUpdateAfterSurvey) {
+    // Get the user's answers
+    const answer1 = [];
+    $("input[type=checkbox]:checked").each(function () {
+      answer1.push($(this).val());
+    });
+
+    // Check if at least one checkbox is checked
+    if (answer1.length == 0) {
+      alert("Please select at least one option.");
+      return;
+    }
+
+    // Create an object to hold the survey data
+    const surveyData = {
+      question_1: answer1,
+      // Add more fields as needed
+    };
+
+    try {
+      // Add the survey data to Firestore under the user's uid
+      await setDoc(doc(db, "joinSurvey", userUid), surveyData);
+
+      // url 쿼리에서 게시물 id를 가져옵니다.
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get("postId");
+
+      const postRef = doc(db, "feed", postId);
+      
+      // Update the post document
+      await updateDoc(postRef, updatedData);
+
+      // Close the modal and redirect to index.html
+      $("#surveyModal").modal("hide");
+      window.location.href = "/index.html";
+    } catch (e) {
+      console.error("Error: ", e);
+    }
+  }
+});
     </script>
   </body>
 </html>
