@@ -212,6 +212,11 @@ h3.recommendation {
   font-weight: 400;
 }
 
+h3.create-title {
+  color: black;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
 
 .container {
   font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
