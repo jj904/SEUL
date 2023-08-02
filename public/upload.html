@@ -250,6 +250,15 @@
         // 파일 업로드
         var uploadTask = uploadBytesResumable(storageRef, file);
 
+        // Firestore에 저장할 데이터
+        var 내용 = $("#content").val();
+
+        // 내용이 비어있으면 함수를 종료
+        if (!내용 || 내용.trim() === '') {
+          alert("내용이 비어있습니다.");
+          return;
+        }
+
         uploadTask.on(
           "state_changed",
           null,
