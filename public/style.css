@@ -158,16 +158,27 @@ align-items: left;
   /* right: 330px; */
 }
 
+/*fixed button*/
+.bug-report{
+  background-color : #A7A6BA;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  border-color: #E7E7E7;
+  font-size:8;
+}
+
+#bugbutton {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+
 /************
 *upload.html*
 *************/
-.create-box{
-  box-sizing: border-box;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-.create-info{ 
+/* .create-info{ 
   box-sizing: border-box;
   padding-top: 150px;
   width: 50%;
@@ -191,26 +202,11 @@ align-items: left;
   height: 50px;
   border-radius: 20px;
   font-size: 22px;
-}
-
-.create-preview{
-  margin-top: 50px;
-  text-align: center;
-  box-sizing: border-box;
-  width: 50%;
-  float: right;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 30px;
-  font-weight: bold;
-  color: #FDD835;
-  margin-left: auto;
-  margin-right: auto; 
-}
+} */
 
 h3 {
   color: #0A0A0A;
-  font-size: 1.25rem;
+  font-size: 1.20rem;
   font-weight: 500;
   margin: 0.5em 0;
 }
@@ -226,6 +222,9 @@ h3.recommendation {
   font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
+.container input {
+     border-radius: 30px;
+}
 
 /***********
 *tutorial.html*
