@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,205 +9,227 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="tutorial.css">
   <!-- bootstrap - css-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
+
 <body>
   <!-- bootstrap - js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
 
   <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-  
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-    <!-- 상단 Bar -->
-    <div class="link-bar">
-      <div class="link-left">
-        <a href="index.html"><img src="./image/seulmainlogo.png" alt="Seul." width="100" height="50"></a>
-        <a href="tutorial.html">Tutorial</a>
-        <a id="create-link-1" href="upload.html">Create</a>
-      </div>
+
+  <!-- 상단 Bar -->
+  <div class="link-bar">
+    <div class="link-left">
+      <a href="index.html"><img src="./image/seulmainlogo.png" alt="Seul." width="100" height="50"></a>
+      <a href="tutorial.html">Tutorial</a>
+      <a id="create-link-1" href="upload.html">Create</a>
     </div>
-    <br><br><br>
-<!-- 피드 레이아웃 -->
+  </div>
+  <br><br><br>
+  <!-- 피드 레이아웃 -->
   <div class="tutorial-container">
     <div class="tutorial-seul">Welcome to Seul.</div>
 
 
     <!-- 온보딩 스크린 페이지! -->
     <div class="tutorial-section">
-    <div id="onboarding1" class="tutorial-onboarding-screen active">
-      <img src="./image/onboarding1.png" width="400" height="600" alt="Onboarding screen 1" />
-      <br>
-      <button class="prev-button">Prev</button>
-      <button class="next-button">Next</button>
-    </div>
-    
-  <div id="onboarding2" class="tutorial-onboarding-screen">
-    <img src="./image/onboarding2.png" width="400" height="600" alt="Onboarding screen 2" />
-    <br />
-    <button class="prev-button">Prev</button>
-    <button class="next-button">Next</button>
-  </div>
-
-  <div id="onboarding3" class="tutorial-onboarding-screen">
-    <img src="./image/onboarding3.png" width="370" height="600" alt="Onboarding screen 3" />
-    <br />
-    <button class="prev-button">Prev</button>
-    <button class="next-button">Next</button>
-  </div>
-
-  <div id="onboarding4" class="tutorial-onboarding-screen">
-    <img src="./image/onboarding4.png" width="400" height="600" alt="Onboarding screen 4" />
-    <br />
-    <button class="prev-button">Prev</button>
-  </div>
-</div>
-  <br>
-    <div class="tutorial-section">
-        <div class="tutorial-header">1. How to Create?</div>
-        <div class="tutorial-content">You can Create Photo Frame!<br><a id="create-link-2" class="tutorial-link" href="upload.html">Go to Create!</a></div>
-    </div>
-
-    <div class="tutorial-section">
-        <div class="tutorial-header">2. How to Join?</div>
-        <div class="tutorial-content">You can Join Photo Frame!<br></div>
-        <div class="tutorial-content">Click the Join Frame!</div>
-        <img class="tutorial_join" src="./image/tutorial_joinhere.png">
-        <div class="tutorial-content"><br>If the frame is already full<br>or you have previously joined,<br>you can't Join!
-        <br><a class="tutorial-link" href="index.html">Go to Join!</a></div>
-      </div>
-      
-    <div class="tutorial-section">
-        <div class="tutorial-header">3. How to take a picture?</div>
-        <div class="tutorial-content">
-          <span class="highlight">Step:</span> <br>Click the "Choose File" button<br>and select "Camera" to take a picture!<br>
-          <span class="highlight">Recommendation:</span> <br>We suggest using the Auto rotate feature for horizontal pictures!
-      </div>
-      
-    </div>
-
-    <div class="tutorial-section">
-        <div class="tutorial-header">4. How to continue using Seul.</div>
-        <div class="tutorial-content">
-          <span class="highlight">iOS:</span> <br>Open Seul. in Safari, tap share,<br>select "Add to Home Screen."<br>
-          <span class="highlight">Android:</span> <br>Visit Seul. in Chrome, tap the three dots,<br>choose "Install App" or "Add to Home Screen."<br>
-          <br>Now, access Seul. directly from your home screen anytime.<br>
-      </div>
-      
+      <div id="tutorial-onboarding1" class="tutorial-onboarding-screen active">
+        <!-- 사이즈 픽스 -->
+        <div class="boarding-fix">
+          <img src="./image/onboarding1.png" width="350" height="550" alt="Onboarding screen 1" />
         </div>
+        <br><br>
+        <button class="prev-button">Prev</button>
+        <button class="next-button">Next</button>
+      </div>
+
+      <div id="tutorial-onboarding2" class="tutorial-onboarding-screen">
+        <!-- 사이즈 픽스 -->
+        <div class="boarding-fix">
+          <img src="./image/onboarding2.png" width="350" height="550" alt="Onboarding screen 2" />
+        </div>
+        <br /><br>
+        <button class="prev-button">Prev</button>
+        <button class="next-button">Next</button>
+      </div>
+
+      <div id="tutorial-onboarding3" class="tutorial-onboarding-screen">
+        <!-- 사이즈 픽스 -->
+        <div class="boarding-fix">
+          <img src="./image/onboarding3.png" width="350" height="550" alt="Onboarding screen 3" />
+        </div> <br /><br>
+        <button class="prev-button">Prev</button>
+        <button class="next-button">Next</button>
+      </div>
+
+      <div id="tutorial-onboarding4" class="tutorial-onboarding-screen">
+        <!-- 사이즈 픽스 -->
+        <div class="boarding-fix">
+          <img src="./image/onboarding4.png" width="320" height="470" alt="Onboarding screen 4" />
+        </div> <br /><br>
+        <button class="prev-button">Prev</button>
+      </div>
+    </div>
+    <br>
+    <div class="tutorial-section">
+      <div class="tutorial-header">1. How to Create?</div>
+      <div class="tutorial-content">You can Create Photo Frame!<br><a id="create-link-2" class="tutorial-link"
+          href="upload.html">Go to Create!</a></div>
+    </div>
+
+    <div class="tutorial-section">
+      <div class="tutorial-header">2. How to Join?</div>
+      <div class="tutorial-content">You can Join Photo Frame!<br></div>
+      <div class="tutorial-content">Click the Join Frame!</div>
+      <img class="tutorial_join" src="./image/tutorial_joinhere.png">
+      <div class="tutorial-content"><br>If the frame is already full<br>or you have previously joined,<br>you can't
+        Join!
+        <br><a class="tutorial-link" href="index.html">Go to Join!</a>
+      </div>
+    </div>
+
+    <div class="tutorial-section">
+      <div class="tutorial-header">3. How to take a picture?</div>
+      <div class="tutorial-content">
+        <span class="highlight">Step:</span> <br>Click the "Choose File" button<br>and select "Camera" to take a
+        picture!<br>
+        <span class="highlight">Recommendation:</span> <br>We suggest using the Auto rotate feature for horizontal
+        pictures!
+      </div>
+
+    </div>
+
+    <div class="tutorial-section">
+      <div class="tutorial-header">4. How to continue using Seul.</div>
+      <div class="tutorial-content">
+        <span class="highlight">iOS:</span> <br>Open Seul. in Safari, tap share,<br>select "Add to Home Screen."<br>
+        <span class="highlight">Android:</span> <br>Visit Seul. in Chrome, tap the three dots,<br>choose "Install App"
+        or "Add to Home Screen."<br>
+        <br>Now, access Seul. directly from your home screen anytime.<br>
+      </div>
+
     </div>
   </div>
+  </div>
 
- <!-- firebase sdk -->
- <script type="module">
-  // SDK에서 필요한 함수들을 import
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import {
-    getStorage,
-    ref,
-    uploadBytesResumable,
-    getDownloadURL,
-  } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
-  import {
-    getFirestore,
-    addDoc,
-    collection,
-    getDocs,
-    orderBy,
-    query,
-    doc,
-    updateDoc,
-    deleteDoc,
-    getDoc,
-  } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-  import {
-    getAuth,
-    signInWithPopup,
-    GoogleAuthProvider,
-    FacebookAuthProvider,
-    onAuthStateChanged,
-  } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+  <!-- firebase sdk -->
+  <script type="module">
+    // SDK에서 필요한 함수들을 import
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import {
+      getStorage,
+      ref,
+      uploadBytesResumable,
+      getDownloadURL,
+    } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+    import {
+      getFirestore,
+      addDoc,
+      collection,
+      getDocs,
+      orderBy,
+      query,
+      doc,
+      updateDoc,
+      deleteDoc,
+      getDoc,
+    } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+    import {
+      getAuth,
+      signInWithPopup,
+      GoogleAuthProvider,
+      FacebookAuthProvider,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-  // Import the necessary Firebase functions
-  import { arrayRemove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-  // deleteObject 함수 import
-  import { deleteObject } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+    // Import the necessary Firebase functions
+    import { arrayRemove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+    // deleteObject 함수 import
+    import { deleteObject } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
-  // Import the functions you need from the SDKs you need
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    // Import the functions you need from the SDKs you need
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyC_2nHVC8RY4xDfMwVlQtp8bbDY8ks-U74",
-    authDomain: "seul-3projm-808e4.firebaseapp.com",
-    projectId: "seul-3projm-808e4",
-    storageBucket: "seul-3projm-808e4.appspot.com",
-    messagingSenderId: "23219568493",
-    appId: "1:23219568493:web:ee3360d6ed3149a946e464",
-    measurementId: "G-5FYNH0ZF4M",
-  };
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyC_2nHVC8RY4xDfMwVlQtp8bbDY8ks-U74",
+      authDomain: "seul-3projm-808e4.firebaseapp.com",
+      projectId: "seul-3projm-808e4",
+      storageBucket: "seul-3projm-808e4.appspot.com",
+      messagingSenderId: "23219568493",
+      appId: "1:23219568493:web:ee3360d6ed3149a946e464",
+      measurementId: "G-5FYNH0ZF4M",
+    };
 
-  // Firebase 초기화
-  const app = initializeApp(firebaseConfig);
+    // Firebase 초기화
+    const app = initializeApp(firebaseConfig);
 
-  // Firebase Analytics 초기화
-  const analytics = getAnalytics(app);
+    // Firebase Analytics 초기화
+    const analytics = getAnalytics(app);
 
-  // Firestore 액세스
-  const db = getFirestore();
+    // Firestore 액세스
+    const db = getFirestore();
 
-  // Storage 액세스
-  const storage = getStorage();
+    // Storage 액세스
+    const storage = getStorage();
 
-  // Authentication 서비스 초기화
-  const auth = getAuth();
-  let user = null;
+    // Authentication 서비스 초기화
+    const auth = getAuth();
+    let user = null;
 
-  onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) {
-      // 로그인한 사용자 정보 저장
-      user = currentUser;
-      // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
-      document.getElementById("create-link-1").href = "upload.html";
-      document.getElementById("create-link-2").href = "upload.html";
-    } else {
-      // 로그아웃 상태
-      user = null;
-      // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
-      document.getElementById("create-link-1").href = "login.html";
-      document.getElementById("create-link-2").href = "login.html";
-    }
-  });
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        // 로그인한 사용자 정보 저장
+        user = currentUser;
+        // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
+        document.getElementById("create-link-1").href = "upload.html";
+        document.getElementById("create-link-2").href = "upload.html";
+      } else {
+        // 로그아웃 상태
+        user = null;
+        // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
+        document.getElementById("create-link-1").href = "login.html";
+        document.getElementById("create-link-2").href = "login.html";
+      }
+    });
 
-      
-  $(document).ready(function() {
-    $('#onboarding1').addClass('active');
 
-    $('.prev-button').click(function() {
+    $(document).ready(function () {
+      $('#tutorial-onboarding1').addClass('active');
+
+      $('.prev-button').click(function () {
         var current = $(this).parent();
         var prev = current.prev('.tutorial-onboarding-screen');
 
         if (prev.length) {
-            current.removeClass('active');
-            prev.addClass('active');
+          current.removeClass('active');
+          prev.addClass('active');
         }
-    });
+      });
 
-    $('.next-button').click(function() {
+      $('.next-button').click(function () {
         var current = $(this).parent();
         var next = current.next('.tutorial-onboarding-screen');
 
         if (next.length) {
-            current.removeClass('active');
-            next.addClass('active');
+          current.removeClass('active');
+          next.addClass('active');
         }
+      });
     });
-});
 
 
-</script>
+  </script>
 </body>
+
 </html>

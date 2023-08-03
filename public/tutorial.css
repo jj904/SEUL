@@ -1,3 +1,13 @@
+#tutorial-onboarding-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+  
+
 .tutorial-onboarding-screen {
     display: none;
     width: 80%;
@@ -7,7 +17,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.8);
   }
   
   .tutorial-onboarding-screen.active {
@@ -17,7 +26,7 @@
   .next-button, .prev-button {
     /* text-align: right; */
     cursor: pointer;
-    background-color: white; 
+    background-color: white;
     color: #FDD835; 
     border: none;
     padding: 10px 20px;
@@ -27,4 +36,11 @@
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+}
+
+.boarding-fix {
+  margin-left: auto;
+  margin-right: auto; 
+  width: 330px;
+  height: 520px;
 }
