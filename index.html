@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onboarding test</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  </head>
+  <body>
+    <!-- <div id="app_screen"> -->
+    <h3>Real content</h3>
+    
+    <button onclick="resetOnboarding()">Reset Onboarding Screens</button>
+
+    <!-- 상단 Bar -->
+    <div class="link-bar">
+      <div class="link-left">
+        <a href="index.html"
+          ><img
+            src="./image/seulmainlogo.png"
+            alt="Seul."
+            width="100"
+            height="50"
+        /></a>
+        <a href="tutorial.html">Tutorial</a>
+        <a id="create-link" href="upload.html">Create</a>
+      </div>
+      <div class="link-right">
+        <button id="gogleLogout" class="logout-btn">Logout</button>
+      </div>
+    </div>
+
+    <!-- 온보딩 스크린 페이지! -->
+    <!-- 디자인을 버튼 말고 글씨로만 하기! -->
+    <div id="onboarding1" class="onboarding-screen active">
+        <!-- Skip 오른쪽 정렬하기 -->
+        <button class="skip-button">Skip</button>      
+        <br>
+      <img src="./image/onboarding1.png" alt="Onboarding screen 1" />
+      <br />
+      <button class="next-button">Next</button>
+    </div>
+
+    <div id="onboarding2" class="onboarding-screen">
+      <img src="./image/onboarding1.PNG" alt="Onboarding screen 2" />
+      <br />
+      <button class="next-button">Next</button>
+    </div>
+
+    <div id="onboarding3" class="onboarding-screen">
+      <img src="./image/onboarding3.png" alt="Onboarding screen 3" />
+      <br />
+      <h4 id="do-not-show-again" style="color: #fdd835">Find this guide line on Tutorial Page</h3>
+      <input type="checkbox" id="do-not-show-again" style="color: #fdd835"> Do not show again
+      <br>
+      <button class="close-button">Close</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            if (localStorage.getItem('hideOnboarding')) {
+                $('.onboarding-screen').hide();
+            } else {
+                $('#onboarding1').addClass('active');
+            }
+
+            $('.next-button').click(function() {
+                var current = $(this).parent();
+                var next = current.next('.onboarding-screen');
+
+                if (next.length) {
+                    current.removeClass('active');
+                    next.addClass('active');
+                }
+            });
+
+            $('.prev-button').click(function() {
+                var current = $(this).parent();
+                var prev = current.prev('.onboarding-screen');
+
+                if (prev.length) {
+                    current.removeClass('active');
+                    prev.addClass('active');
+                }
+            });
+
+            $('.close-button, .skip-button').click(function() {
+                $('.onboarding-screen').hide();
+                if ($('#do-not-show-again').is(':checked')) {
+                    localStorage.setItem('hideOnboarding', true);
+                }
+            });
+        });
+
+    // Test for onboarding screen
+        function resetOnboarding() {
+    // Remove the 'hideOnboarding' flag from local storage
+    localStorage.removeItem('hideOnboarding');
+}
+
+    </script>
+    <!-- 온보딩 스크린 페이지 끝! -->
+
+    
+  </body>
+</html>
