@@ -188,42 +188,6 @@
       // 좋아요 기능을 위한 사용자 초기화
       let user = null;
 
-      // onboarding 함수
-          $(document).ready(function() {
-            if (localStorage.getItem('hideOnboarding')) {
-                $('.onboarding-screen').hide();
-            } else {
-                $('#onboarding1').addClass('active');
-            }
-
-            $('.next-button').click(function() {
-                var current = $(this).parent();
-                var next = current.next('.onboarding-screen');
-
-                if (next.length) {
-                    current.removeClass('active');
-                    next.addClass('active');
-                }
-            });
-
-            $('.prev-button').click(function() {
-                var current = $(this).parent();
-                var prev = current.prev('.onboarding-screen');
-
-                if (prev.length) {
-                    current.removeClass('active');
-                    prev.addClass('active');
-                }
-            });
-
-            $('.close-button, .skip-button').click(function() {
-                $('.onboarding-screen').hide();
-                if ($('#do-not-show-again').is(':checked')) {
-                    localStorage.setItem('hideOnboarding', true);
-                }
-            });
-        });
-
       // Google Logout
       document.getElementById("gogleLogout").addEventListener("click", () => {
         if (user) {  
@@ -574,12 +538,14 @@
       }
     });
 
-    $(".close-button, .skip-button").click(function () {
-      $(".onboarding-screen").hide();
-      if ($("#do-not-show-again-checkbox").is(":checked")) {
-        localStorage.setItem("hideOnboarding", true);
-      }
-    });
+    $('.close-button, .skip-button').click(function() {
+  $('.onboarding-screen').hide();
+  $('#onboarding-container').hide();  // add this line
+  if ($('#do-not-show-again').is(':checked')) {
+    localStorage.setItem('hideOnboarding', true);
+  }
+});
+
 
 
     // Test for onboarding screen
