@@ -28,20 +28,29 @@
   display: block;
 }
 
-.close-button, .skip-button, .next-button {
+.close-button,.next-button {
   cursor: pointer;
   background-color: rgba(255, 255, 255);
+  width: 60%;
   color: #FDD835; 
   border: none;
   padding: 10px 20px;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
 
+.skip-button{
+  cursor: pointer;
+  background-color: rgba(255, 255, 255);
+  color: black;
+  border: none;
+
+}
 .boarding-fix {
   margin-left: auto;
   margin-right: auto; 

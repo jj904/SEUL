@@ -59,7 +59,8 @@
         <div class="boarding-fix">
           <img src="./image/onboarding1.png" width="350" height="550" alt="Onboarding screen 1" />
         </div>
-      <button class="skip-button">Skip</button>
+
+      <!-- <button class="skip-button">Skip</button> -->
       <button class="next-button">Next</button>
     </div>
     
@@ -69,7 +70,7 @@
       <div class="boarding-fix">
         <img src="./image/onboarding2.png" width="350" height="550" alt="Onboarding screen 2" />
       </div>
-    <button class="skip-button">Skip</button>
+    <!-- <button class="skip-button">Skip</button> -->
     <button class="next-button">Next</button>
   </div>
 
@@ -79,7 +80,7 @@
     <div class="boarding-fix">
       <img src="./image/onboarding3.png" width="350" height="550" alt="Onboarding screen 3" />
     </div>
-        <button class="skip-button">Skip</button>
+        <!-- <button class="skip-button">Skip</button> -->
         <button class="next-button">Next</button>
   </div>
 
@@ -88,14 +89,13 @@
 
       <!-- 사이즈 픽스 -->
       <div class="boarding-fix">
-      <img src="./image/onboarding4.png" width="320" height="480" alt="Onboarding screen 4" />
-        <div class="guidline">
-          <h4 id="do-not-show-again" style="color: #fdd835">Find this guide line on Tutorial Page</h3>
-            <input type="checkbox" id="do-not-show-again">
-            <label for="do-not-show-again" class="checkbox-label">Do not show again</label>
-        </div>  
+      <img src="./image/onboarding4.png" width="320" height="470" alt="Onboarding screen 4" />
+      <div class="guidline">
+        <h5 style="color: #fdd835">Find this guide line on Tutorial Page</h5>
+        <input type="checkbox" id="do-not-show-again-checkbox" />
+        <label for="do-not-show-again-checkbox" class="checkbox-label">Do not show again</label>
       </div>
-      <button class="close-button">Close</button>
+      </div>
       <button class="close-button">Close</button>
   </div>
 </div>
@@ -121,31 +121,31 @@
     <script>
       
       // onboarding 함수
-      $(document).ready(function() {
-        if (localStorage.getItem('hideOnboarding')) {
-            $('.onboarding-screen').hide();
+      $(document).ready(function () {
+        if (localStorage.getItem("hideOnboarding")) {
+          $(".onboarding-screen").hide();
         } else {
-            $('#onboarding1').addClass('active');
+          $("#onboarding1").addClass("active");
         }
 
-        $('.next-button').click(function() {
-            var current = $(this).parent();
-            var next = current.next('.onboarding-screen');
+        $(".next-button").click(function () {
+          var current = $(this).parent();
+          var next = current.next(".onboarding-screen");
 
-            if (next.length) {
-                current.removeClass('active');
-                next.addClass('active');
+          if (next.length) {
+            current.removeClass("active");
+            next.addClass("active");
+          }
+        });
+
+        $(".close-button, .skip-button").click(function () {
+            $(".onboarding-screen").hide();
+            if ($("#do-not-show-again-checkbox").is(":checked")) {
+                localStorage.setItem("hideOnboarding", true);
             }
         });
 
-        $('.close-button, .skip-button').click(function() {
-            $('.onboarding-screen').hide();
-            if ($('#do-not-show-again').is(':checked')) {
-                localStorage.setItem('hideOnboarding', true);
-            }
-        });
-    });
-
+      });
 
     </script>
 
