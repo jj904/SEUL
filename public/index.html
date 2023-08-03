@@ -50,55 +50,55 @@
       </div>
     </div>
     
-    <!-- 온보딩 스크린 페이지! -->
-    <!-- 디자인을 버튼 말고 글씨로만 하기! -->
-    <div id="onboarding-container">
+  <!-- 온보딩 스크린 페이지! -->
+  <!-- 디자인을 버튼 말고 글씨로만 하기! -->
+  <div id="onboarding-container">
     <div id="onboarding1" class="onboarding-screen active">
       <br><br><br><br>
-        <!-- 사이즈 픽스 -->
-        <div class="boarding-fix">
-          <img src="./image/onboarding1.png" width="330" height="530" alt="Onboarding screen 1" />
-        </div>
+      <!-- 사이즈 픽스 -->
+      <div class="boarding-fix">
+        <img src="./image/onboarding1.png" width="330" height="530" alt="Onboarding screen 1" />
+      </div>
 
       <!-- <button class="skip-button">Skip</button> -->
       <button class="next-button">Next</button>
     </div>
-    
-  <div id="onboarding2" class="onboarding-screen">
-    <br><br><br><br>
+
+    <div id="onboarding2" class="onboarding-screen">
+      <br><br><br><br>
       <!-- 사이즈 픽스 -->
       <div class="boarding-fix">
         <img src="./image/onboarding2.png" width="330" height="530" alt="Onboarding screen 2" />
       </div>
-    <!-- <button class="skip-button">Skip</button> -->
-    <button class="next-button">Next</button>
-  </div>
-
-  <div id="onboarding3" class="onboarding-screen">
-    <br><br><br><br>
-    <!-- 사이즈 픽스 -->
-    <div class="boarding-fix">
-      <img src="./image/onboarding3.png" width="330" height="530" alt="Onboarding screen 3" />
+      <!-- <button class="skip-button">Skip</button> -->
+      <button class="next-button">Next</button>
     </div>
-        <!-- <button class="skip-button">Skip</button> -->
-        <button class="next-button">Next</button>
-  </div>
 
-  <div id="onboarding4" class="onboarding-screen">
-    <br><br><br><br>
+    <div id="onboarding3" class="onboarding-screen">
+      <br><br><br><br>
+      <!-- 사이즈 픽스 -->
+      <div class="boarding-fix">
+        <img src="./image/onboarding3.png" width="330" height="530" alt="Onboarding screen 3" />
+      </div>
+      <!-- <button class="skip-button">Skip</button> -->
+      <button class="next-button">Next</button>
+    </div>
+
+    <div id="onboarding4" class="onboarding-screen">
+      <br><br><br><br>
 
       <!-- 사이즈 픽스 -->
       <div class="boarding-fix">
-      <img src="./image/onboarding4.png" width="320" height="470" alt="Onboarding screen 4" />
-      <div class="guidline">
-        <h5 style="color: #fdd835">Find this guide line on Tutorial Page</h5>
-        <input type="checkbox" id="do-not-show-again-checkbox" />
-        <label for="do-not-show-again-checkbox" class="checkbox-label">Do not show again</label>
-      </div>
+        <img src="./image/onboarding4.png" width="320" height="470" alt="Onboarding screen 4" />
+        <div class="guidline">
+          <h5 style="color: #fdd835">Find this guide line on Tutorial Page</h5>
+          <input type="checkbox" id="do-not-show-again-checkbox" />
+          <label for="do-not-show-again-checkbox" class="checkbox-label">Do not show again</label>
+        </div>
       </div>
       <button class="close-button">Close</button>
+    </div>
   </div>
-</div>
 
    <!-- 커피 이벤트 <fixed button> -->
     <div id="mybutton">
@@ -112,52 +112,15 @@
       <button class="bug-report" onclick="window.location.href='https://forms.gle/czV4yh4MTEa6D4mu5';">
         Bug Report🚨
       </button>
-      <!-- <button onclick="resetOnboarding()">Reset Onboarding Screens</button> -->
     </div>
 
     <!-- 피드 레이아웃 -->
     <div class="container mt-3"><br><br><br></div>
 
-
-    <script>
-      
-      // onboarding 함수
-      $(document).ready(function () {
-        if (localStorage.getItem("hideOnboarding")) {
-          $(".onboarding-screen").hide();
-        } else {
-          $("#onboarding1").addClass("active");
-        }
-
-        $(".next-button").click(function () {
-          var current = $(this).parent();
-          var next = current.next(".onboarding-screen");
-
-          if (next.length) {
-            current.removeClass("active");
-            next.addClass("active");
-          }
-        });
-
-        $(".close-button, .skip-button").click(function () {
-            $(".onboarding-screen").hide();
-            if ($("#do-not-show-again-checkbox").is(":checked")) {
-                localStorage.setItem("hideOnboarding", true);
-            }
-        });
-
-      });
-
-          // Test for onboarding screen
-          function resetOnboarding() {
-        // Remove the 'hideOnboarding' flag from local storage
-        localStorage.removeItem('hideOnboarding');
-}
-    </script>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    <!-- firebase sdk -->
+    <script type="module">
+      // SDK에서 필요한 함수들을 import
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
       import {
         getStorage,
         ref,
@@ -225,358 +188,408 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebas
       // 좋아요 기능을 위한 사용자 초기화
       let user = null;
 
-      onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) {
-      // 로그인한 사용자 정보 저장
-      user = currentUser;
+      // onboarding 함수
+          $(document).ready(function() {
+            if (localStorage.getItem('hideOnboarding')) {
+                $('.onboarding-screen').hide();
+            } else {
+                $('#onboarding1').addClass('active');
+            }
 
-      // Show "Sign out with Google" button and hide "Login" button
-      document.getElementById("gogleLogout").style.display = "block";
-      // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
-      document.getElementById("create-link").href = "upload.html";
-    } 
-    
-    else {
-      // 로그아웃 상태
-      user = null;
-     
-      // Show "Login" button and hide "Sign out with Google" button
-      document.getElementById("gogleLogout").style.display = "none";
-      // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
-      document.getElementById("create-link").href = "login.html";
-    }
-  });
+            $('.next-button').click(function() {
+                var current = $(this).parent();
+                var next = current.next('.onboarding-screen');
 
-  // Google Logout
-  document.getElementById("gogleLogout").addEventListener("click", () => {
-    if (user) {  
-      signOut(auth).then(() => {
-        alert("User logged out successfully!)");
-        // 로그인 성공 후 index.html로 리다이렉트
-        window.location.href = "index.html";
-      }).catch((error) => {
-        // An error happened.
-        console.error("Error logging out:", error);
-      });
-    }else{
-      alert("Already logged out");
-    }
-  });
-
-  const productCollection = collection(db, "feed");
-  const productQuery = query(
-    productCollection,
-    orderBy("wholikeCount", "desc"),
-    orderBy("createdAt", "desc")
-  );
-
-  getDocs(productQuery).then((결과) => {
-    결과.docs.forEach((doc) => {
-      const imageData = doc.data(); // Get doc data
-      const docId = doc.id; // Get document id
-      let joinImageUrl = [];
-
-      // 좋아요 정보 가져오기
-      let likes = Array.isArray(imageData.wholike) ? imageData.wholike : [];
-
-      // wholike 기능 관련 변수 초기화 for 그냥 view 유저들
-      let isLiked = false;
-      let likeIconImage = "./image/heart1.png"; // Default like icon image
-
-      // 사용자가 로그인한 상태인지 확인
-      if (user) {
-        isLiked = likes.includes(user.uid); // 사용자가 이미 좋아요를 눌렀는지 확인
-        // 좋아요 아이콘 이미지 설정
-        likeIconImage = isLiked
-          ? "./image/heart3.png"
-          : "./image/heart1.png";
-      }
-
-      if (
-        imageData.hasOwnProperty("joinimage") &&
-        Array.isArray(imageData.joinimage)
-      ) {
-        // Check if 'joinimage' field exists and it's an array
-        joinImageUrl = imageData.joinimage; // 이미지 URL들의 배열
-      }
-
-      // Get post ID from URL query params in upload.html
-      const urlParams = new URLSearchParams(window.location.search);
-      const postId = urlParams.get("postId");
-
-      let imageTemplates = [];
-
-      // 첫 번째 이미지는 항상 imageData.이미지에 있습니다.
-      imageTemplates[0] = `<img class="frame-img" src="${imageData.이미지}" alt="Image">`;
-
-      for (let i = 0; i < 3; i++) {
-        if (joinImageUrl[i]) {
-          imageTemplates[i + 1] = `<img class="frame-img" src="${
-            joinImageUrl[i]
-          }" data-index="${i + 1}" alt="Join Image">`;
-        } else {
-          imageTemplates[
-            i + 1
-          ] = `<a class="frame-link" data-postId="${docId}"><img class="frame-img" src="./image/joinhere.png"></a>`;
-        }
-      }
-
-      // 피드 템플릿 생성
-      var 템플릿 = `
-      <div class="box">
-        <div class="profile">
-          <img class="profile-img" src="./image/seul_logo.png" alt="Profile">
-          <link rel="stylesheet" type="text/css" href="style.css">
-          <h5 class="title">${imageData.제목}</h5>
-          <div class="dropdown">
-          <img class="more-img" src="./image/more_vert.png" alt="More" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item save-option" href="contact.html
-              ">Contact Us</a></li>
-          </ul>
-        </div>
-        </div>
-        <div class="frame" data-id="${docId}">
-          ${imageTemplates.join("")}
-          <h4 class="seul">Seul.</h4>
-        </div>
-        <p class="content">#${imageData.내용}</p>
-        <div class="likes" data-id="${docId}" data-liked="${isLiked}">
-          <img src="${likeIconImage}" class="like-icon" alt="Like Icon">
-          <h3 class="like-count">${likes.length}</h3>
-        </div>
-      </div>
-      <br>
-      <div class="divide-line"></div>
-      <br>
-      `;
-      $(".container").append(템플릿);
-    });
-
-    // Join 함수
-    // 로그인 안 되어 있으면 못함
-    // 내가 생성한 피드면 Join 못함
-    // 내가 이미 Join한 피드면 Join 못함
-    $(document).on("click", ".frame-link", async function () {
-      // 사용자가 로그인했는지 확인
-      if (user) {
-        let $makerContainer = $(this).parent();
-        let postId = $makerContainer.data("id");
-
-        const postRef = doc(db, "feed", postId);
-        const postDoc = await getDoc(postRef);
-        const feedData = postDoc.data();
-        const makers = Array.isArray(feedData.makers)
-          ? feedData.makers
-          : [];
-
-        // 현재 로그인한 사용자가 피드의 생성자나 이미 참여한 사용자인지 확인
-        if (!makers.includes(user.uid)) {
-          // 이미지가 채워져 있지 않으면 join.html로 이동
-          window.location.href = `join.html?postId=${postId}`;
-        } else {
-          // 자신이 생성한 피드에는 참여할 수 없다는 메시지를 팝업으로 띄움
-          alert("You already join this feed! :)");
-        }
-      } else {
-        // 로그인하지 않았다면 login.html로 이동
-        window.location.href = "login.html";
-      }
-    });
-
-    // 좋아요 기능
-    $(document).on("click", ".like-icon", async function () {
-      if (!user) {
-        // 로그인하지 않았다면 login.html로 이동
-        window.location.href = "login.html";
-      }
-
-      let $likeContainer = $(this).parent();
-      let postId = $likeContainer.data("id");
-      let $likeCount = $likeContainer.find(".like-count");
-
-      const postRef = doc(db, "feed", postId);
-      const postDoc = await getDoc(postRef);
-      const postData = postDoc.data();
-      const likes = postData.wholike || [];
-
-      if (likes.includes(user.uid)) {
-        // 이미 좋아요를 눌렀으면 좋아요 취소
-        const newLikes = likes.filter((uid) => uid !== user.uid);
-        await updateDoc(postRef, { wholike: newLikes, wholikeCount: newLikes.length });
-
-
-        $(this).attr("src", "./image/heart1.png");
-        $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
-      } else {
-        // 좋아요 추가
-        const newLikes = [...likes, user.uid];
-        await updateDoc(postRef, { wholike: newLikes, wholikeCount: newLikes.length });
-
-        $(this).attr("src", "./image/heart3.png");
-        $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
-      }
-    });
-
-    // // Join한 Frame 삭제
-
-    // 이미지 URL에서 파일 경로를 추출하는 함수
-    function extractFilePathFromURL(imageUrl) {
-      // 이미지 URL에서 파일 경로 추출하기
-      // 예를 들어, imageUrl이 "https://firebasestorage.googleapis.com/v0/b/seulfortest.appspot.com/o/image%2F20221227_170902.jpg?alt=media&token=245f0f58-59eb-4472-9644-dc7897df9f41" 형식이라면,
-      // 파일 경로인 "image%2F20221227_170902.jpg" 부분만 추출하여 반환합니다.
-      const startIndex = imageUrl.lastIndexOf("/") + 1;
-      const endIndex = imageUrl.indexOf("?");
-      return imageUrl.substring(startIndex, endIndex);
-    }
-
-    // Join한 이미지를 Firestore와 Storage에서 삭제하는 함수
-    async function removeJoinImage(postId, joinImageIndex) {
-      const postRef = doc(db, "feed", postId);
-
-      try {
-        const postSnap = await getDoc(postRef);
-        const imageData = postSnap.data();
-
-        if (
-          imageData.hasOwnProperty("이미지") &&
-          Array.isArray(imageData.이미지) &&
-          imageData.hasOwnProperty("joinimage") &&
-          Array.isArray(imageData.joinimage)
-        ) {
-          const joinImageArray = imageData.joinimage;
-
-          // console.log("joinImageIndex:", joinImageIndex);
-          // console.log("imageData:", imageData);
-          // console.log("joinImageArray:", joinImageArray);
-
-          // 인덱스가 올바른 범위 내에 있는지 확인
-          if (
-            joinImageIndex >= 0 &&
-            joinImageIndex <= joinImageArray.length
-          ) {
-            const joinImageToDelete = joinImageArray[joinImageIndex];
-            const filePath = joinImageToDelete.replace(
-              "gs://seulfortest.appspot.com/",
-              ""
-            );
-
-            // console.log("joinImageToDelete:", joinImageToDelete);
-            // console.log("filePath:", filePath);
-
-            // Storage에서 joinimage 삭제
-            const imageRef = ref(storage, filePath);
-            await deleteObject(imageRef);
-
-            // joinimage 배열에서 이미지 URL 삭제
-            joinImageArray.splice(joinImageIndex, 1);
-
-            // makers 배열에서 해당 인덱스 값 삭제
-            const makersArray = imageData.makers;
-            makersArray.splice(joinImageIndex + 1, 1);
-
-            // 배열을 다시 Firestore 업데이트
-            await updateDoc(postRef, {
-              joinimage: joinImageArray,
-              makers: makersArray,
+                if (next.length) {
+                    current.removeClass('active');
+                    next.addClass('active');
+                }
             });
+
+            $('.prev-button').click(function() {
+                var current = $(this).parent();
+                var prev = current.prev('.onboarding-screen');
+
+                if (prev.length) {
+                    current.removeClass('active');
+                    prev.addClass('active');
+                }
+            });
+
+            $('.close-button, .skip-button').click(function() {
+                $('.onboarding-screen').hide();
+                if ($('#do-not-show-again').is(':checked')) {
+                    localStorage.setItem('hideOnboarding', true);
+                }
+            });
+        });
+
+      // Google Logout
+      document.getElementById("gogleLogout").addEventListener("click", () => {
+        if (user) {  
+          signOut(auth).then(() => {
+            alert("User logged out successfully!)");
+            // 로그인 성공 후 index.html로 리다이렉트
+            window.location.href = "index.html";
+          }).catch((error) => {
+            // An error happened.
+            console.error("Error logging out:", error);
+          });
+        }else{
+          alert("Already logged out");
+        }
+      });
+
+      onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
+          // 로그인한 사용자 정보 저장
+          user = currentUser;
+
+          // Show "Sign out with Google" button and hide "Login" button
+          document.getElementById("gogleLogout").style.display = "block";
+          // 로그인한 경우, 'Create' 링크를 'upload.html'로 변경
+          document.getElementById("create-link").href = "upload.html";
+        } 
+        
+        else {
+          // 로그아웃 상태
+          user = null;
+         
+          // Show "Login" button and hide "Sign out with Google" button
+          document.getElementById("gogleLogout").style.display = "none";
+          // 로그인하지 않은 경우, 'Create' 링크를 'login.html'로 변경
+          document.getElementById("create-link").href = "login.html";
+        }
+      });
+
+      const productCollection = collection(db, "feed");
+      const productQuery = query(
+        productCollection,
+        orderBy("wholikeCount", "desc"),
+        orderBy("createdAt", "desc")
+      );
+
+      getDocs(productQuery).then((결과) => {
+        결과.docs.forEach((doc) => {
+          const imageData = doc.data(); // Get doc data
+          const docId = doc.id; // Get document id
+          let joinImageUrl = [];
+
+          // 좋아요 정보 가져오기
+          let likes = Array.isArray(imageData.wholike) ? imageData.wholike : [];
+
+          // wholike 기능 관련 변수 초기화 for 그냥 view 유저들
+          let isLiked = false;
+          let likeIconImage = "./image/heart1.png"; // Default like icon image
+
+          // 사용자가 로그인한 상태인지 확인
+          if (user) {
+            isLiked = likes.includes(user.uid); // 사용자가 이미 좋아요를 눌렀는지 확인
+            // 좋아요 아이콘 이미지 설정
+            likeIconImage = isLiked
+              ? "./image/heart3.png"
+              : "./image/heart1.png";
+          }
+
+          if (
+            imageData.hasOwnProperty("joinimage") &&
+            Array.isArray(imageData.joinimage)
+          ) {
+            // Check if 'joinimage' field exists and it's an array
+            joinImageUrl = imageData.joinimage; // 이미지 URL들의 배열
+          }
+
+          // Get post ID from URL query params in upload.html
+          const urlParams = new URLSearchParams(window.location.search);
+          const postId = urlParams.get("postId");
+
+          let imageTemplates = [];
+
+          // 첫 번째 이미지는 항상 imageData.이미지에 있습니다.
+          imageTemplates[0] = `<img class="frame-img" src="${imageData.이미지}" alt="Image">`;
+
+          for (let i = 0; i < 3; i++) {
+            if (joinImageUrl[i]) {
+              imageTemplates[i + 1] = `<img class="frame-img" src="${
+                joinImageUrl[i]
+              }" data-index="${i + 1}" alt="Join Image">`;
+            } else {
+              imageTemplates[
+                i + 1
+              ] = `<a class="frame-link" data-postId="${docId}"><img class="frame-img" src="./image/joinhere.png"></a>`;
+            }
+          }
+
+          // 피드 템플릿 생성
+          var 템플릿 = `
+          <div class="box">
+            <div class="profile">
+              <img class="profile-img" src="./image/seul_logo.png" alt="Profile">
+              <link rel="stylesheet" type="text/css" href="style.css">
+              <h5 class="title">${imageData.제목}</h5>
+              <div class="dropdown">
+              <img class="more-img" src="./image/more_vert.png" alt="More" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item save-option" href="contact.html
+                  ">Contact Us</a></li>
+              </ul>
+            </div>
+            </div>
+            <div class="frame" data-id="${docId}">
+              ${imageTemplates.join("")}
+              <h4 class="seul">Seul.</h4>
+            </div>
+            <p class="content">#${imageData.내용}</p>
+            <div class="likes" data-id="${docId}" data-liked="${isLiked}">
+              <img src="${likeIconImage}" class="like-icon" alt="Like Icon">
+              <h3 class="like-count">${likes.length}</h3>
+            </div>
+          </div>
+          <br>
+          <div class="divide-line"></div>
+          <br>
+          `;
+          $(".container").append(템플릿);
+        });
+
+        // Join 함수
+        // 로그인 안 되어 있으면 못함
+        // 내가 생성한 피드면 Join 못함
+        // 내가 이미 Join한 피드면 Join 못함
+        $(document).on("click", ".frame-link", async function () {
+          // 사용자가 로그인했는지 확인
+          if (user) {
+            let $makerContainer = $(this).parent();
+            let postId = $makerContainer.data("id");
+
+            const postRef = doc(db, "feed", postId);
+            const postDoc = await getDoc(postRef);
+            const feedData = postDoc.data();
+            const makers = Array.isArray(feedData.makers)
+              ? feedData.makers
+              : [];
+
+            // 현재 로그인한 사용자가 피드의 생성자나 이미 참여한 사용자인지 확인
+            if (!makers.includes(user.uid)) {
+              // 이미지가 채워져 있지 않으면 join.html로 이동
+              window.location.href = `join.html?postId=${postId}`;
+            } else {
+              // 자신이 생성한 피드에는 참여할 수 없다는 메시지를 팝업으로 띄움
+              alert("You already join this feed! :)");
+            }
+          } else {
+            // 로그인하지 않았다면 login.html로 이동
+            window.location.href = "login.html";
+          }
+        });
+
+        // 좋아요 기능
+        $(document).on("click", ".like-icon", async function () {
+          if (!user) {
+            // 로그인하지 않았다면 login.html로 이동
+            window.location.href = "login.html";
+          }
+
+          let $likeContainer = $(this).parent();
+          let postId = $likeContainer.data("id");
+          let $likeCount = $likeContainer.find(".like-count");
+
+          const postRef = doc(db, "feed", postId);
+          const postDoc = await getDoc(postRef);
+          const postData = postDoc.data();
+          const likes = postData.wholike || [];
+
+          if (likes.includes(user.uid)) {
+            // 이미 좋아요를 눌렀으면 좋아요 취소
+            const newLikes = likes.filter((uid) => uid !== user.uid);
+            await updateDoc(postRef, { wholike: newLikes, wholikeCount: newLikes.length });
+
+
+            $(this).attr("src", "./image/heart1.png");
+            $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
+          } else {
+            // 좋아요 추가
+            const newLikes = [...likes, user.uid];
+            await updateDoc(postRef, { wholike: newLikes, wholikeCount: newLikes.length });
+
+            $(this).attr("src", "./image/heart3.png");
+            $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
+          }
+        });
+
+        // // Join한 Frame 삭제
+
+        // 이미지 URL에서 파일 경로를 추출하는 함수
+        function extractFilePathFromURL(imageUrl) {
+          // 이미지 URL에서 파일 경로 추출하기
+          // 예를 들어, imageUrl이 "https://firebasestorage.googleapis.com/v0/b/seulfortest.appspot.com/o/image%2F20221227_170902.jpg?alt=media&token=245f0f58-59eb-4472-9644-dc7897df9f41" 형식이라면,
+          // 파일 경로인 "image%2F20221227_170902.jpg" 부분만 추출하여 반환합니다.
+          const startIndex = imageUrl.lastIndexOf("/") + 1;
+          const endIndex = imageUrl.indexOf("?");
+          return imageUrl.substring(startIndex, endIndex);
+        }
+
+        // Join한 이미지를 Firestore와 Storage에서 삭제하는 함수
+        async function removeJoinImage(postId, joinImageIndex) {
+          const postRef = doc(db, "feed", postId);
+
+          try {
+            const postSnap = await getDoc(postRef);
+            const imageData = postSnap.data();
+
+            if (
+              imageData.hasOwnProperty("이미지") &&
+              Array.isArray(imageData.이미지) &&
+              imageData.hasOwnProperty("joinimage") &&
+              Array.isArray(imageData.joinimage)
+            ) {
+              const joinImageArray = imageData.joinimage;
+
+              // console.log("joinImageIndex:", joinImageIndex);
+              // console.log("imageData:", imageData);
+              // console.log("joinImageArray:", joinImageArray);
+
+              // 인덱스가 올바른 범위 내에 있는지 확인
+              if (
+                joinImageIndex >= 0 &&
+                joinImageIndex <= joinImageArray.length
+              ) {
+                const joinImageToDelete = joinImageArray[joinImageIndex];
+                const filePath = joinImageToDelete.replace(
+                  "gs://seulfortest.appspot.com/",
+                  ""
+                );
+
+                // console.log("joinImageToDelete:", joinImageToDelete);
+                // console.log("filePath:", filePath);
+
+                // Storage에서 joinimage 삭제
+                const imageRef = ref(storage, filePath);
+                await deleteObject(imageRef);
+
+                // joinimage 배열에서 이미지 URL 삭제
+                joinImageArray.splice(joinImageIndex, 1);
+
+                // makers 배열에서 해당 인덱스 값 삭제
+                const makersArray = imageData.makers;
+                makersArray.splice(joinImageIndex + 1, 1);
+
+                // 배열을 다시 Firestore 업데이트
+                await updateDoc(postRef, {
+                  joinimage: joinImageArray,
+                  makers: makersArray,
+                });
+              }
+            }
+          } catch (error) {
+            console.error("Error removing joinimage:", error);
           }
         }
-      } catch (error) {
-        console.error("Error removing joinimage:", error);
-      }
-    }
 
-    $(document).on("click", ".frame-img", async function () {
-      let $frame = $(this).closest(".frame");
-      let postId = $frame.data("id");
-      let imageIndex = $(this).data("index");
+        $(document).on("click", ".frame-img", async function () {
+          let $frame = $(this).closest(".frame");
+          let postId = $frame.data("id");
+          let imageIndex = $(this).data("index");
 
-      // 로그인 상태 확인
-      if (!user) {
-        // 로그인하지 않았다면 login.html로 이동
-        window.location.href = "login.html";
-        return;
-      }
-
-      const postRef = doc(db, "feed", postId);
-
-      try {
-        const postSnap = await getDoc(postRef);
-        const imageData = postSnap.data();
-
-         // 이미지가 채워져 있는지 확인
-         if ($(this).attr("src") && $(this).attr("src").trim() !== "" && $(this).attr("src").trim() !== "./image/joinhere.png") {
-          // 이미지 업로드자와 현재 사용자 비교
-          const makers = Array.isArray(imageData.makers)
-            ? imageData.makers
-            : [];
-          const currentMaker = makers[imageIndex];
-
-          // 사진이 채워져 있는데, 유저가 다른 경우
-          if (user.uid !== currentMaker) {
-            alert("You cannot delete this image.");
+          // 로그인 상태 확인
+          if (!user) {
+            // 로그인하지 않았다면 login.html로 이동
+            window.location.href = "login.html";
             return;
           }
-        }
-      } catch (error) {
-        console.error("Error reading document:", error);
-      }
 
-      // 이미지가 클릭되지 않은 경우 아무 동작도 하지 않음
-      if (typeof imageIndex === "undefined") {
-        return;
-      }
+          const postRef = doc(db, "feed", postId);
 
-      // 이미지가 채워져 있는지 확인
-      if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
-        // 첫 번째 이미지인 경우 삭제 불가
-        if (imageIndex === 0) {
-          // 이미지가 첫 번째인 경우 아무 동작도 하지 않음
-          return;
-        }
+          try {
+            const postSnap = await getDoc(postRef);
+            const imageData = postSnap.data();
 
-        // 이미지 삭제 확인
-        if (
-          confirm(
-            "Are you sure delete your image? \nThe order of the current images might be affected!"
-          )
-        ) {
-          // 이미지 삭제
-          await removeJoinImage(postId, imageIndex - 1);
+             // 이미지가 채워져 있는지 확인
+             if ($(this).attr("src") && $(this).attr("src").trim() !== "" && $(this).attr("src").trim() !== "./image/joinhere.png") {
+              // 이미지 업로드자와 현재 사용자 비교
+              const makers = Array.isArray(imageData.makers)
+                ? imageData.makers
+                : [];
+              const currentMaker = makers[imageIndex];
 
-          // 프레임에서 이미지 삭제 후 빈 프레임 이미지로 교체
-          $(this).replaceWith(
-            `<a href="join.html?postId=${postId}"><img class="frame-img" src="./image/joinhere.png"></a>`
-          );
-        }
+              // 사진이 채워져 있는데, 유저가 다른 경우
+              if (user.uid !== currentMaker) {
+                alert("You cannot delete this image.");
+                return;
+              }
+            }
+          } catch (error) {
+            console.error("Error reading document:", error);
+          }
+
+          // 이미지가 클릭되지 않은 경우 아무 동작도 하지 않음
+          if (typeof imageIndex === "undefined") {
+            return;
+          }
+
+          // 이미지가 채워져 있는지 확인
+          if ($(this).attr("src") && $(this).attr("src").trim() !== "") {
+            // 첫 번째 이미지인 경우 삭제 불가
+            if (imageIndex === 0) {
+              // 이미지가 첫 번째인 경우 아무 동작도 하지 않음
+              return;
+            }
+
+            // 이미지 삭제 확인
+            if (
+              confirm(
+                "Are you sure delete your image? \nThe order of the current images might be affected!"
+              )
+            ) {
+              // 이미지 삭제
+              await removeJoinImage(postId, imageIndex - 1);
+
+              // 프레임에서 이미지 삭제 후 빈 프레임 이미지로 교체
+              $(this).replaceWith(
+                `<a href="join.html?postId=${postId}"><img class="frame-img" src="./image/joinhere.png"></a>`
+              );
+            }
+          } else {
+            // 이미지가 채워져 있지 않으면 join.html로 이동
+            window.location.href = `join.html?postId=${postId}`;
+          }
+        });
+
+    // onboarding 함수
+    $(document).ready(function () {
+      if (localStorage.getItem("hideOnboarding")) {
+        $(".onboarding-screen").hide();
       } else {
-        // 이미지가 채워져 있지 않으면 join.html로 이동
-        window.location.href = `join.html?postId=${postId}`;
+        $("#onboarding1").addClass("active");
       }
     });
 
-    //   // Save frame as an image
-    //   $(document).on("click", ".save-option", function (e) {
-    //     e.preventDefault();
+    $(".next-button").click(function () {
+      var current = $(this).parent();
+      var next = current.next(".onboarding-screen");
 
-    //     const frameElement = $(this).closest(".box").find(".frame")[0];
+      if (next.length) {
+        current.removeClass("active");
+        next.addClass("active");
+      }
+    });
 
-    //     html2canvas(frameElement, { useCORS: true }).then(function (canvas) {
-    //       let el = document.createElement("a");
-    //       el.href = canvas.toDataURL("image/jpeg");
-    //       el.download = "frame.jpg"; // 파일명 설정
-    //       document.body.appendChild(el);
-    //       el.click();
-    //       document.body.removeChild(el);
-    //     });
-    //   });
-  });
-
-
-</script>
+    $(".close-button, .skip-button").click(function () {
+      $(".onboarding-screen").hide();
+      if ($("#do-not-show-again-checkbox").is(":checked")) {
+        localStorage.setItem("hideOnboarding", true);
+      }
+    });
 
 
+    // Test for onboarding screen
+    function resetOnboarding() {
+      // Remove the 'hideOnboarding' flag from local storage
+      localStorage.removeItem('hideOnboarding');
+    }
+      });
+      
+    </script>
   </body>
   <script>
     if ('serviceWorker' in navigator) {
