@@ -6,6 +6,7 @@
   <title>Seul.</title>
 
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="tutorial.css">
   <!-- bootstrap - css-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
@@ -30,6 +31,36 @@
   <div class="tutorial-container">
     <div class="tutorial-seul">Welcome to Seul.</div>
 
+
+    <!-- 온보딩 스크린 페이지! -->
+    <div id="onboarding1" class="tutorial-onboarding-screen active">
+      <img src="./image/onboarding1.png" width="400" height="600" alt="Onboarding screen 1" />
+      <br>
+      <button class="prev-button">Prev</button>
+      <button class="next-button">Next</button>
+    </div>
+    
+  <div id="onboarding2" class="tutorial-onboarding-screen">
+    <img src="./image/onboarding2.PNG" width="400" height="600" alt="Onboarding screen 2" />
+    <br />
+    <button class="prev-button">Prev</button>
+    <button class="next-button">Next</button>
+  </div>
+
+  <div id="onboarding3" class="tutorial-onboarding-screen">
+    <img src="./image/onboarding3.PNG" width="370" height="600" alt="Onboarding screen 3" />
+    <br />
+    <button class="prev-button">Prev</button>
+    <button class="next-button">Next</button>
+  </div>
+
+  <div id="onboarding4" class="tutorial-onboarding-screen">
+    <img src="./image/onboarding4.png" width="400" height="600" alt="Onboarding screen 4" />
+    <br />
+    <button class="prev-button">Prev</button>
+  </div>
+
+  <br>
     <div class="tutorial-section">
         <div class="tutorial-header">1. How to Create?</div>
         <div class="tutorial-content">You can Create Photo Frame!<br><a id="create-link-2" class="tutorial-link" href="upload.html">Go to Create!</a></div>
@@ -149,6 +180,36 @@
     }
   });
 
+      
+      // onboarding 함수
+      $(document).ready(function() {
+        if (localStorage.getItem('hideOnboarding')) {
+            $('.tutorial-onboarding-screen').hide();
+        } else {
+            $('#onboarding1').addClass('active');
+        }
+
+        $('.prev-button').click(function() {
+            var current = $(this).parent();
+            var prev = current.prev('.tutorial-onboarding-screen');
+
+            if (prev.length) {
+                current.removeClass('active');
+                prev.addClass('active');
+            }
+        });
+
+        $('.next-button').click(function() {
+            var current = $(this).parent();
+            var next = current.next('.tutorial-onboarding-screen');
+
+            if (next.length) {
+                current.removeClass('active');
+                next.addClass('active');
+            }
+        });
+
+    });
 
 </script>
 </body>
