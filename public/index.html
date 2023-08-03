@@ -57,7 +57,7 @@
       <br><br><br><br>
         <!-- 사이즈 픽스 -->
         <div class="boarding-fix">
-          <img src="./image/onboarding1.png" width="350" height="530" alt="Onboarding screen 1" />
+          <img src="./image/onboarding1.png" width="350" height="550" alt="Onboarding screen 1" />
         </div>
 
       <!-- <button class="skip-button">Skip</button> -->
@@ -68,7 +68,7 @@
     <br><br><br><br>
       <!-- 사이즈 픽스 -->
       <div class="boarding-fix">
-        <img src="./image/onboarding2.png" width="350" height="530" alt="Onboarding screen 2" />
+        <img src="./image/onboarding2.png" width="350" height="550" alt="Onboarding screen 2" />
       </div>
     <!-- <button class="skip-button">Skip</button> -->
     <button class="next-button">Next</button>
@@ -78,7 +78,7 @@
     <br><br><br><br>
     <!-- 사이즈 픽스 -->
     <div class="boarding-fix">
-      <img src="./image/onboarding3.png" width="350" height="530" alt="Onboarding screen 3" />
+      <img src="./image/onboarding3.png" width="350" height="550" alt="Onboarding screen 3" />
     </div>
         <!-- <button class="skip-button">Skip</button> -->
         <button class="next-button">Next</button>
@@ -112,6 +112,7 @@
       <button class="bug-report" onclick="window.location.href='https://forms.gle/czV4yh4MTEa6D4mu5';">
         Bug Report🚨
       </button>
+      <!-- <button onclick="resetOnboarding()">Reset Onboarding Screens</button> -->
     </div>
 
     <!-- 피드 레이아웃 -->
@@ -147,6 +148,11 @@
 
       });
 
+          // Test for onboarding screen
+          function resetOnboarding() {
+        // Remove the 'hideOnboarding' flag from local storage
+        localStorage.removeItem('hideOnboarding');
+}
     </script>
 
 <script type="module" src="indexjs.js"></script>

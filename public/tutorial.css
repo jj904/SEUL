@@ -44,3 +44,8 @@
   width: 330px;
   height: 520px;
 }
+
+.tutorial-section{
+  margin-left: auto;
+  margin-right: auto; 
+}
