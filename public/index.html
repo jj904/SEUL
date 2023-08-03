@@ -8,6 +8,7 @@
     <title>Seul.</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="onboarding.css" />
     <!-- bootstrap - css-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -18,6 +19,14 @@
 
     <!-- html2canvas - js -->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+        <!-- jquery -->
+        <script
+        src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+        crossorigin="anonymous"
+      ></script>
+
   </head>
   
   <body>
@@ -28,12 +37,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- jquery -->
-    <script
-      src="https://code.jquery.com/jquery-3.7.0.min.js"
-      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-      crossorigin="anonymous"
-    ></script>
 
     <!-- 상단 Bar -->
     <div class="link-bar">
@@ -47,6 +50,35 @@
       </div>
     </div>
     
+    <!-- 온보딩 스크린 페이지! -->
+    <!-- 디자인을 버튼 말고 글씨로만 하기! -->
+
+    <div id="onboarding1" class="onboarding-screen active">
+      <!-- Skip 오른쪽 정렬하기 -->
+      <br><br><br><br>
+      <button class="skip-button">Skip</button>      
+      <br>
+    <img src="./image/onboarding1.png" alt="Onboarding screen 1" />
+    <br />
+    <button class="next-button">Next</button>
+  </div>
+
+  <div id="onboarding2" class="onboarding-screen">
+    <br><br><br><br>
+    <img src="./image/onboarding2.PNG" alt="Onboarding screen 2" />
+    <br />
+    <button class="next-button">Next</button>
+  </div>
+
+  <div id="onboarding3" class="onboarding-screen">
+    <br><br><br><br>
+    <img src="./image/onboarding3.png" alt="Onboarding screen 3" />
+    <br />
+    <h4 id="do-not-show-again" style="color: #fdd835">Find this guide line on Tutorial Page</h3>
+    <input type="checkbox" id="do-not-show-again" style="color: #fdd835"> Do not show again
+    <br>
+    <button class="close-button">Close</button>
+  </div>
 
    <!-- 커피 이벤트 <fixed button> -->
     <div id="mybutton">
@@ -61,7 +93,6 @@
         Bug Report🚨
       </button>
     </div>
-
 
     <!-- 피드 레이아웃 -->
     <div class="container mt-3"></div>
@@ -136,7 +167,43 @@
 
       // 좋아요 기능을 위한 사용자 초기화
       let user = null;
-      
+
+      // onboarding 함수
+          $(document).ready(function() {
+            if (localStorage.getItem('hideOnboarding')) {
+                $('.onboarding-screen').hide();
+            } else {
+                $('#onboarding1').addClass('active');
+            }
+
+            $('.next-button').click(function() {
+                var current = $(this).parent();
+                var next = current.next('.onboarding-screen');
+
+                if (next.length) {
+                    current.removeClass('active');
+                    next.addClass('active');
+                }
+            });
+
+            $('.prev-button').click(function() {
+                var current = $(this).parent();
+                var prev = current.prev('.onboarding-screen');
+
+                if (prev.length) {
+                    current.removeClass('active');
+                    prev.addClass('active');
+                }
+            });
+
+            $('.close-button, .skip-button').click(function() {
+                $('.onboarding-screen').hide();
+                if ($('#do-not-show-again').is(':checked')) {
+                    localStorage.setItem('hideOnboarding', true);
+                }
+            });
+        });
+
       // Google Logout
       document.getElementById("gogleLogout").addEventListener("click", () => {
         if (user) {  

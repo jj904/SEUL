@@ -1,0 +1,42 @@
+/* onboarding screen */
+
+.body {
+    margin-top: 85px;
+}
+.onboarding-screen {
+    display: none;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .onboarding-screen.active {
+    display: block;
+  }
+  
+  .close-button, .skip-button, .next-button, .prev-button {
+    cursor: pointer;
+    background-color: #fdd835;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .close-button:hover, .skip-button:hover, .next-button:hover, .prev-button:hover {
+    background-color: white; 
+    color: black; 
+  }
+  
