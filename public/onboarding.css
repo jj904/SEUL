@@ -1,8 +1,5 @@
 /* onboarding screen */
 
-.body {
-    margin-top: 85px;
-}
 .onboarding-screen {
     display: none;
     width: 80%;
@@ -19,24 +16,28 @@
   .onboarding-screen.active {
     display: block;
   }
-  
-  .close-button, .skip-button, .next-button, .prev-button {
+
+  .guidline {
+    background-color: white
+  }
+
+  .close-button, .skip-button, .next-button {
+    /* text-align: right; */
     cursor: pointer;
-    background-color: #fdd835;
-    color: white;
+    background-color: white; /* 배경색을 흰색으로 변경 */
+    color: #FDD835; /* 글씨색을 검정색으로 변경 */
     border: none;
     padding: 10px 20px;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-  }
+}
   
-  .close-button:hover, .skip-button:hover, .next-button:hover, .prev-button:hover {
+  /* .close-button:hover, .skip-button:hover, .next-button:hover {
     background-color: white; 
     color: black; 
-  }
-  
+  } */
+
