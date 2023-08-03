@@ -4,11 +4,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  /* max-width: 500px; */
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4); /* Black with opacity */
 }
 
 /* onboarding screen */
