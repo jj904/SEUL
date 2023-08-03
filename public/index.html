@@ -178,6 +178,7 @@
       const productCollection = collection(db, "feed");
       const productQuery = query(
         productCollection,
+        orderBy("wholikeCount", "desc"),
         orderBy("createdAt", "desc")
       );
 
@@ -188,9 +189,9 @@
           let joinImageUrl = [];
 
           // 좋아요 정보 가져오기
-          let likes = Array.isArray(imageData.좋아요) ? imageData.좋아요 : [];
+          let likes = Array.isArray(imageData.wholike) ? imageData.wholike : [];
 
-          // 좋아요 기능 관련 변수 초기화 for 그냥 view 유저들
+          // wholike 기능 관련 변수 초기화 for 그냥 view 유저들
           let isLiked = false;
           let likeIconImage = "./image/heart1.png"; // Default like icon image
 
@@ -309,19 +310,20 @@
           const postRef = doc(db, "feed", postId);
           const postDoc = await getDoc(postRef);
           const postData = postDoc.data();
-          const likes = postData.좋아요 || [];
+          const likes = postData.wholike || [];
 
           if (likes.includes(user.uid)) {
             // 이미 좋아요를 눌렀으면 좋아요 취소
             const newLikes = likes.filter((uid) => uid !== user.uid);
-            await updateDoc(postRef, { 좋아요: newLikes });
+            await updateDoc(postRef, { wholike: newLikes, wholikeCount: newLikes.length });
+
 
             $(this).attr("src", "./image/heart1.png");
             $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시
           } else {
             // 좋아요 추가
             const newLikes = [...likes, user.uid];
-            await updateDoc(postRef, { 좋아요: newLikes });
+            await updateDoc(postRef, { wholike: newLikes, wholikeCount: newLikes.length });
 
             $(this).attr("src", "./image/heart3.png");
             $likeCount.text(newLikes.length); // 좋아요 수를 배열의 길이로 표시

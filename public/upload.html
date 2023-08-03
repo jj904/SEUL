@@ -277,7 +277,8 @@
               제목: userEmail, // 사용자의 이메일 앞 부분을 제목으로 설정
               이미지: [url, "", "", ""],
               내용: $("#content").val(),
-              좋아요: [], // 좋아요 필드를 빈 배열로 초기화
+              wholike: [], // 좋아요 필드를 빈 배열로 초기화
+              wholikeCount: 0,
               createdAt: new Date(),
               makers: [userUid], // 사용자의 uid를 makers 배열에 추가
             };
