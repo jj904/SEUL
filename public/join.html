@@ -170,7 +170,7 @@
         FacebookAuthProvider,
         onAuthStateChanged,
       } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-
+      import { v4 as uuidv4 } from 'uuid';
       // Your web app's Firebase configuration
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       const firebaseConfig = {
@@ -218,15 +218,18 @@
       });
 
       var shouldUpdateAfterSurvey = false; // Flag variable
-var updatedData;  // Declare this in global scope
+      var updatedData;  // Declare this in global scope
 
-$("#send").click(async function () {
-  // 선택한 파일 찾기
-  var file = document.querySelector("#image").files[0];
-  // 저장할 경로 설정
-  var storageRef = ref(storage, "image/" + file.name);
-  // 파일 업로드
-  var uploadTask = uploadBytesResumable(storageRef, file);
+    $("#send").click(async function () {
+      var file = document.querySelector("#image").files[0];
+      // 파일 확장자 가져오기
+      var fileExtension = file.name.split('.').pop();
+      // 랜덤한 파일 이름 생성
+      var randomFileName = uuidv4() + "." + fileExtension;
+      // 저장할 경로 설정
+      var storageRef = ref(storage, "image/" + randomFileName);
+      // 파일 업로드
+      var uploadTask = uploadBytesResumable(storageRef, file);
 
   uploadTask.on(
     "state_changed",
