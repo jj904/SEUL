@@ -1,349 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seul.</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <!-- bootstrap - css-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <!-- bootstrap - js -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seul.</title>
 
-    <!-- jquery -->
-    <script
-      src="https://code.jquery.com/jquery-3.7.0.min.js"
-      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-      crossorigin="anonymous"
-    ></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <!-- bootstrap - css-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+</head>
 
-    <!-- 상단 Bar -->
-    <div class="link-bar">
-      <div class="link-left">
-        <a href="index.html"
-          ><img
-            src="./image/seulmainlogo.png"
-            alt="Seul."
-            width="100"
-            height="50"
-        /></a>
-        <a href="tutorial.html">Tutorial</a>
+<body>
+  <!-- bootstrap - js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+  <!-- 상단 Bar -->
+  <div class="link-bar">
+    <div class="link-left">
+      <a href="index.html"><img src="./image/seulmainlogo.png" alt="Seul." width="100" height="50" /></a>
+      <a href="tutorial.html">Tutorial</a>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <br><br><br>
+    <h3 class="create-title">Once you create a frame, you can't delete it!</h3>
+    <input type="text" class="form-control mt-2" id="content" placeholder="Enter your content" />
+    <input class="form-control mt-2" type="file" id="image" />
+    <br />
+    <h3>Preview</h3>
+    <h3 class="recommendation">
+      We recommend using Auto rotate for horizontal pictures!<br />
+    </h3>
+    <!-- 미리보기를 위한 div 추가 -->
+    <div class="box">
+      <div class="frame">
+        <img class="frame-img" id="preview" />
+        <img class="frame-img" />
+        <img class="frame-img" />
+        <img class="frame-img" />
+        <h4 class="seul">Seul.</h4>
       </div>
     </div>
+    <button class="btn btn-danger mt-3" id="send">Create</button>
+    <br />
+    <h3 class="recommendation">
+      Thank you for your patience, It takes some time to be uploaded.
+    </h3>
+    <br />
+  </div>
 
-    <div class="container mt-3">
-      <br><br><br>
-      <h3 class="create-title">Once you create a frame, you can't delete it!</h3>
-      <input
-        type="text"
-        class="form-control mt-2"
-        id="content"
-        placeholder="Enter your content"
-      />
-      <input class="form-control mt-2" type="file" id="image" />
-      <br />
-      <h3>Preview</h3>
-      <h3 class="recommendation">
-        We recommend using Auto rotate for horizontal pictures!<br />
-      </h3>
-      <!-- 미리보기를 위한 div 추가 -->
-      <div class="box">
-        <div class="frame">
-          <img class="frame-img" id="preview" />
-          <img class="frame-img" />
-          <img class="frame-img" />
-          <img class="frame-img" />
-          <h4 class="seul">Seul.</h4>
+  <!-- Modal -->
+  <div class="modal fade" id="surveyModal" tabindex="-1" aria-labelledby="surveyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #f8f9fa">
+          <h5 class="modal-title" id="surveyModalLabel" style="font-weight: bold; color: #fdd835">
+            Create Survey
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
-      <button class="btn btn-danger mt-3" id="send">Create</button>
-      <br />
-      <h3 class="recommendation">
-        Thank you for your patience, It takes some time to be uploaded.
-      </h3>
-      <br />
-    </div>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="surveyModal"
-      tabindex="-1"
-      aria-labelledby="surveyModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header" style="background-color: #f8f9fa">
-            <h5
-              class="modal-title"
-              id="surveyModalLabel"
-              style="font-weight: bold; color: #fdd835"
-            >
-              Create Survey
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" style="background-color: #f8f9fa">
-            <form id="surveyForm">
-              <div class="form-group">
-                <label for="question1" style="font-weight: bold; color: #212529"
-                  >Why did you participate in Seul. demo version?</label
-                >
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="option1"
-                    value="Because it seemed like it was fun"
-                  />
-                  <label class="form-check-label" for="option1"
-                    >Because it seemed like it was fun</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="option2"
-                    value="Co-creating photos with people (social, challenge)"
-                  />
-                  <label class="form-check-label" for="option2"
-                    >Co-creating photos with people (social, challenge)</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="option3"
-                    value="Because a friend wanted to / recommended it"
-                  />
-                  <label class="form-check-label" for="option3"
-                    >Because a friend wanted to / recommended it</label
-                  >
-                </div>
+        <div class="modal-body" style="background-color: #f8f9fa">
+          <form id="surveyForm">
+            <div class="form-group">
+              <label for="question1" style="font-weight: bold; color: #212529">Why did you participate in Seul. demo
+                version?</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="option1"
+                  value="Because it seemed like it was fun" />
+                <label class="form-check-label" for="option1">Because it seemed like it was fun</label>
               </div>
-              <h3
-                class="recommendation"
-                style="font-size: 1rem; text-align: center; color: #fdd835"
-              >
-                <br />"Create" survey is only required once!<br />
-                Thank you for your response!
-              </h3>
-            </form>
-          </div>
-          <div class="modal-footer" style="background-color: #f8f9fa">
-            <button type="button" class="btn custom-btn" id="doneButton">
-              Done
-            </button>
-          </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="option2"
+                  value="Co-creating photos with people (social, challenge)" />
+                <label class="form-check-label" for="option2">Co-creating photos with people (social, challenge)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="option3"
+                  value="Because a friend wanted to / recommended it" />
+                <label class="form-check-label" for="option3">Because a friend wanted to / recommended it</label>
+              </div>
+            </div>
+            <h3 class="recommendation" style="font-size: 1rem; text-align: center; color: #fdd835">
+              <br />"Create" survey is only required once!<br />
+              Thank you for your response!
+            </h3>
+          </form>
+        </div>
+        <div class="modal-footer" style="background-color: #f8f9fa">
+          <button type="button" class="btn custom-btn" id="doneButton">
+            Done
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- firebase sdk -->
-    <script type="module">
-      // SDK에서 필요한 함수들을 import
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-      import {
-        doc,
-        getDoc,
-        setDoc,
-        getFirestore,
-        addDoc,
-        collection,
-      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-      import {
-        getStorage,
-        ref,
-        uploadBytesResumable,
-        getDownloadURL,
-      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+  <!-- firebase sdk -->
+  <script type="module">
+    // SDK에서 필요한 함수들을 import
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import {
+      doc,
+      getDoc,
+      setDoc,
+      getFirestore,
+      addDoc,
+      collection,
+    } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+    import {
+      getStorage,
+      ref,
+      uploadBytesResumable,
+      getDownloadURL,
+    } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
-      // Import the functions you need from the SDKs you need
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-      import {
-        getAuth,
-        signInWithPopup,
-        GoogleAuthProvider,
-        FacebookAuthProvider,
-        onAuthStateChanged,
-      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-      
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyC_2nHVC8RY4xDfMwVlQtp8bbDY8ks-U74",
-        authDomain: "seul-3projm-808e4.firebaseapp.com",
-        projectId: "seul-3projm-808e4",
-        storageBucket: "seul-3projm-808e4.appspot.com",
-        messagingSenderId: "23219568493",
-        appId: "1:23219568493:web:ee3360d6ed3149a946e464",
-        measurementId: "G-5FYNH0ZF4M",
+    // Import the functions you need from the SDKs you need
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    import {
+      getAuth,
+      signInWithPopup,
+      GoogleAuthProvider,
+      FacebookAuthProvider,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyC_2nHVC8RY4xDfMwVlQtp8bbDY8ks-U74",
+      authDomain: "seul-3projm-808e4.firebaseapp.com",
+      projectId: "seul-3projm-808e4",
+      storageBucket: "seul-3projm-808e4.appspot.com",
+      messagingSenderId: "23219568493",
+      appId: "1:23219568493:web:ee3360d6ed3149a946e464",
+      measurementId: "G-5FYNH0ZF4M",
+    };
+    // Firebase 초기화
+    const app = initializeApp(firebaseConfig);
+
+    // Firebase Analytics 초기화
+    const analytics = getAnalytics(app);
+
+    // Firestore 액세스
+    const db = getFirestore();
+
+    // Storage 액세스
+    const storage = getStorage();
+
+    // Auth 초기화
+    const auth = getAuth();
+
+    let userEmail;
+    let userUid; // user uid를 저장할 전역변수 추가
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        // 로그인한 사용자의 이메일 앞 부분을 가져옵니다.
+        const userId = currentUser.email.split("@")[0];
+        userEmail = userId;
+        userUid = currentUser.uid; // 사용자의 uid 저장
+      }
+    });
+
+    var updatedData; // Declare this in global scope
+    var randomFileName; // Declare this in global scope
+
+    $("#image").change(function () {
+      let reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("#preview").attr("src", e.target.result); // 이미지 소스를 선택된 이미지로 설정
+        $("#preview").attr("hidden", false); // 미리보기 이미지 표시
       };
-      // Firebase 초기화
-      const app = initializeApp(firebaseConfig);
 
-      // Firebase Analytics 초기화
-      const analytics = getAnalytics(app);
+      reader.readAsDataURL(this.files[0]); // 선택된 파일을 데이터 URL로 읽기
 
-      // Firestore 액세스
-      const db = getFirestore();
+      // 선택한 파일 찾기
+      var file = this.files[0];
+      // 파일 확장자 가져오기
+      var fileExtension = file.name.split('.').pop();
+      // 랜덤한 파일 이름 생성
+      randomFileName = Math.random().toString(36).substring(7) + "." + fileExtension;
+      console.log("randomFileName : ", randomFileName);
+    });
+    var shouldAddAfterSurvey = false;
+    var 저장할거;
 
-      // Storage 액세스
-      const storage = getStorage();
+    $("#send").click(async function () {
+      // 선택한 파일 찾기
+      var file = document.querySelector("#image").files[0];
+      // 저장할 경로 설정
+      var storageRef = ref(storage, "image/" + randomFileName);
+      // 파일 업로드
+      var uploadTask = uploadBytesResumable(storageRef, file);
 
-      // Auth 초기화
-      const auth = getAuth();
+      // Firestore에 저장할 데이터
+      var 내용 = $("#content").val();
 
-      let userEmail;
-      let userUid; // user uid를 저장할 전역변수 추가
-      onAuthStateChanged(auth, (currentUser) => {
-        if (currentUser) {
-          // 로그인한 사용자의 이메일 앞 부분을 가져옵니다.
-          const userId = currentUser.email.split("@")[0];
-          userEmail = userId;
-          userUid = currentUser.uid; // 사용자의 uid 저장
+      // 내용이 비어있으면 함수를 종료
+      if (!내용 || 내용.trim() === '') {
+        alert("Please filled your content textfield!");
+        return;
+      }
+
+      uploadTask.on(
+        "state_changed",
+        null,
+        //에러 발생시 동작하는 함수
+        (error) => {
+          console.error("업로드 실패사유:", error);
+        },
+        //업로드 성공시 동작하는 함수
+        async () => {
+          // 업로드된 이미지의 URL을 가져옵니다.
+          const url = await getDownloadURL(uploadTask.snapshot.ref);
+
+          // Firestore에 저장할 데이터
+          저장할거 = {
+            제목: userEmail, // 사용자의 이메일 앞 부분을 제목으로 설정
+            이미지: [url, "", "", ""],
+            내용: $("#content").val(),
+            wholike: [], // 좋아요 필드를 빈 배열로 초기화
+            wholikeCount: 0,
+            createdAt: new Date(),
+            makers: [userUid], // 사용자의 uid를 makers 배열에 추가
+          };
+
+          // Check if the user has already created a survey
+          const createSurveyDocRef = doc(db, "createSurvey", userUid);
+          const createSurveyDocSnap = await getDoc(createSurveyDocRef);
+
+          if (!createSurveyDocSnap.exists()) {
+            // If the user has not created a survey, show the survey modal
+            $("#surveyModal").modal("show");
+            shouldAddAfterSurvey = true;
+          } else {
+            // If the user has already created a survey, add data to Firestore and redirect to index.html
+            try {
+              await addDoc(collection(db, "feed"), 저장할거);
+              window.location.href = "/index.html";
+            } catch (e) {
+              console.error("Error: ", e);
+            }
+          }
         }
-      });
+      );
+    });
 
-      $("#image").change(function () {
-        let reader = new FileReader();
+    // "Done" button event listener
+    $("#doneButton").click(async function () {
+      if (shouldAddAfterSurvey) {
+        // Get the user's answers
+        const answer1 = [];
+        $("input[type=checkbox]:checked").each(function () {
+          answer1.push($(this).val());
+        });
 
-        reader.onload = function (e) {
-          $("#preview").attr("src", e.target.result); // 이미지 소스를 선택된 이미지로 설정
-          $("#preview").attr("hidden", false); // 미리보기 이미지 표시
-        };
-
-        reader.readAsDataURL(this.files[0]); // 선택된 파일을 데이터 URL로 읽기
-      });
-
-      var shouldAddAfterSurvey = false;
-      var 저장할거;
-
-      $("#send").click(async function () {
-        // 선택한 파일 찾기
-        var file = document.querySelector("#image").files[0];
-// 랜덤한 파일 이름 생성
-var randomFileName = Math.random().toString(36).substring(7) + ".jpg";
-// 저장할 경로 설정
-var storageRef = ref(storage, "image/" + randomFileName);
-// 파일 업로드
-var uploadTask = uploadBytesResumable(storageRef, file);
-
-        // Firestore에 저장할 데이터
-        var 내용 = $("#content").val();
-
-        // 내용이 비어있으면 함수를 종료
-        if (!내용 || 내용.trim() === '') {
-          alert("Please filled your content textfield!");
+        // Check if at least one checkbox is checked
+        if (answer1.length == 0) {
+          alert("Please select at least one option.");
           return;
         }
 
-        uploadTask.on(
-          "state_changed",
-          null,
-          //에러 발생시 동작하는 함수
-          (error) => {
-            console.error("업로드 실패사유:", error);
-          },
-          //업로드 성공시 동작하는 함수
-          async () => {
-            // 업로드된 이미지의 URL을 가져옵니다.
-            const url = await getDownloadURL(uploadTask.snapshot.ref);
+        // Create an object to hold the survey data
+        const surveyData = {
+          question_1: answer1,
+          // Add more fields as needed
+        };
 
-            // Firestore에 저장할 데이터
-            저장할거 = {
-              제목: userEmail, // 사용자의 이메일 앞 부분을 제목으로 설정
-              이미지: [url, "", "", ""],
-              내용: $("#content").val(),
-              wholike: [], // 좋아요 필드를 빈 배열로 초기화
-              wholikeCount: 0,
-              createdAt: new Date(),
-              makers: [userUid], // 사용자의 uid를 makers 배열에 추가
-            };
+        try {
+          // Add the survey data to Firestore under the user's uid
+          await setDoc(doc(db, "createSurvey", userUid), surveyData);
 
-            // Check if the user has already created a survey
-            const createSurveyDocRef = doc(db, "createSurvey", userUid);
-            const createSurveyDocSnap = await getDoc(createSurveyDocRef);
+          // Add the image data to Firestore
+          await addDoc(collection(db, "feed"), 저장할거);
 
-            if (!createSurveyDocSnap.exists()) {
-              // If the user has not created a survey, show the survey modal
-              $("#surveyModal").modal("show");
-              shouldAddAfterSurvey = true;
-            } else {
-              // If the user has already created a survey, add data to Firestore and redirect to index.html
-              try {
-                await addDoc(collection(db, "feed"), 저장할거);
-                window.location.href = "/index.html";
-              } catch (e) {
-                console.error("Error: ", e);
-              }
-            }
-          }
-        );
-      });
-
-      // "Done" button event listener
-      $("#doneButton").click(async function () {
-        if (shouldAddAfterSurvey) {
-          // Get the user's answers
-          const answer1 = [];
-          $("input[type=checkbox]:checked").each(function () {
-            answer1.push($(this).val());
-          });
-
-          // Check if at least one checkbox is checked
-          if (answer1.length == 0) {
-            alert("Please select at least one option.");
-            return;
-          }
-
-          // Create an object to hold the survey data
-          const surveyData = {
-            question_1: answer1,
-            // Add more fields as needed
-          };
-
-          try {
-            // Add the survey data to Firestore under the user's uid
-            await setDoc(doc(db, "createSurvey", userUid), surveyData);
-
-            // Add the image data to Firestore
-            await addDoc(collection(db, "feed"), 저장할거);
-
-            // Close the modal and redirect to index.html
-            $("#surveyModal").modal("hide");
-            window.location.href = "/index.html";
-          } catch (e) {
-            console.error("Error: ", e);
-          }
+          // Close the modal and redirect to index.html
+          $("#surveyModal").modal("hide");
+          window.location.href = "/index.html";
+        } catch (e) {
+          console.error("Error: ", e);
         }
-      });
+      }
+    });
 
 
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
