@@ -537,12 +537,6 @@
       localStorage.setItem('hideOnboarding', true);
     });
 
-
-    // Test for onboarding screen
-    function resetOnboarding() {
-      // Remove the 'hideOnboarding' flag from local storage
-      localStorage.removeItem('hideOnboarding');
-    }
       });
       
     </script>
@@ -552,8 +546,21 @@
       <button class="bug-report" onclick="window.location.href='https://forms.gle/czV4yh4MTEa6D4mu5';">
         Bug Report🚨
       </button>
+      <br>
+      <button class="bug-report" onclick="resetOnboarding()">View Guide Line</button>
     </div>
     
+    <script>
+    // 온보딩 페이지 다시보기
+    function resetOnboarding() {
+      // Remove the 'hideOnboarding' flag from local storage
+      localStorage.removeItem('hideOnboarding');
+      // Show the onboarding container again
+      $('#onboarding-container').show();
+      window.location.href = "index.html";
+    }
+    </script>
+
   </body>
   <script>
     if ('serviceWorker' in navigator) {
