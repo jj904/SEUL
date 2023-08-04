@@ -89,11 +89,9 @@
 
       <!-- 사이즈 픽스 -->
       <div class="boarding-fix">
-        <img src="./image/onboarding4.png" width="320" height="470" alt="Onboarding screen 4" />
+        <img src="./image/onboarding4.png" width="320" height="500" alt="Onboarding screen 4" />
         <div class="guidline">
           <h5 style="color: #fdd835">Find this guide line on Tutorial Page</h5>
-          <input type="checkbox" id="do-not-show-again-checkbox" />
-          <label for="do-not-show-again-checkbox" class="checkbox-label">Do not show again</label>
         </div>
       </div>
       <button class="close-button">Close</button>
@@ -542,9 +540,7 @@
     $('.close-button, .skip-button').click(function() {
       $('.onboarding-screen').hide();
       $('#onboarding-container').hide();  // add this line
-      if ($('#do-not-show-again').is(':checked')) {
-        localStorage.setItem('hideOnboarding', true);
-      }
+      localStorage.setItem('hideOnboarding', true);
     });
 
 
