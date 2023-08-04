@@ -538,14 +538,14 @@
       }
     });
 
-    $('.close-button, .skip-button').click(function() {
-  $('.onboarding-screen').hide();
-  $('#onboarding-container').hide();  // add this line
-  if ($('#do-not-show-again').is(':checked')) {
-    localStorage.setItem('hideOnboarding', true);
-  }
-});
 
+    $('.close-button, .skip-button').click(function() {
+      $('.onboarding-screen').hide();
+      $('#onboarding-container').hide();  // add this line
+      if ($('#do-not-show-again').is(':checked')) {
+        localStorage.setItem('hideOnboarding', true);
+      }
+    });
 
 
     // Test for onboarding screen
