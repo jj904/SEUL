@@ -520,6 +520,7 @@
     // onboarding 함수
     $(document).ready(function () {
       if (localStorage.getItem("hideOnboarding")) {
+        $('#onboarding-container').hide();
         $(".onboarding-screen").hide();
       } else {
         $("#onboarding1").addClass("active");
