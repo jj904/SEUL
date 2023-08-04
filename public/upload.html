@@ -176,6 +176,8 @@
 
     var updatedData; // Declare this in global scope
     var randomFileName; // Declare this in global scope
+    var shouldAddAfterSurvey = false;
+    var 저장할거;
 
     $("#image").change(function () {
       let reader = new FileReader();
@@ -195,8 +197,7 @@
       randomFileName = Math.random().toString(36).substring(7) + "." + fileExtension;
       console.log("randomFileName : ", randomFileName);
     });
-    var shouldAddAfterSurvey = false;
-    var 저장할거;
+    
 
     $("#send").click(async function () {
       // 선택한 파일 찾기
